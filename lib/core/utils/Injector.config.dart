@@ -11,7 +11,7 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../application_entry.dart' as _i3;
+import '../../myApp.dart' as _i3;
 import '../../feature/auth/domain/blocs/login/auth_cubit.dart' as _i4;
 import '../../feature/auth/domain/repository/login_repository.dart' as _i6;
 import '../../feature/auth/domain/usecases/remote/check_user_is_login_usecase.dart'
@@ -34,7 +34,7 @@ _i1.GetIt init(
     environment,
     environmentFilter,
   );
-  gh.factory<_i3.ApplicationEntry>(() => _i3.ApplicationEntry());
+  gh.factory<_i3.MyApp>(() => _i3.MyApp());
   gh.factory<_i4.AuthCubit>(() => _i4.AuthCubit());
   gh.factory<_i5.CheckUserIsLoginUseCase>(
       () => _i5.CheckUserIsLoginUseCase(gh<_i6.LoginRepository>()));

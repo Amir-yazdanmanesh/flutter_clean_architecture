@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'application_entry.dart';
+import 'myApp.dart';
 import 'core/utils/Injector.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -18,7 +18,7 @@ class MyHttpOverrides extends HttpOverrides {
 void main() async {
   HttpOverrides.global = MyHttpOverrides();
   await startUp();
-  runApp(getIt<ApplicationEntry>());
+  runApp(getIt<MyApp>());
 }
 startUp() async {
   // setUrlStrategy(PathUrlStrategy());

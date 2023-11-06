@@ -13,12 +13,12 @@ import 'feature/auth/presentation/pages/otp_page.dart';
 import 'feature/auth/presentation/pages/sign_in_page.dart';
 
 @injectable
-class ApplicationEntry extends StatefulWidget {
+class MyApp extends StatefulWidget {
   @override
-  State<ApplicationEntry> createState() => _ApplicationEntryState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _ApplicationEntryState extends State<ApplicationEntry> {
+class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
