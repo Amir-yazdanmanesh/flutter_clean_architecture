@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constanst/numbers/spacings.dart';
 import '../../../../core/utils/toasts.dart';
-import '../../../../core/widgets/farsi_text_editor.dart';
 import '../../../../core/widgets/simple_widgets.dart';
 import '../../domain/blocs/login/auth_cubit.dart';
 import 'otp_page.dart';
@@ -25,7 +25,6 @@ class _SignInPageState extends State<SignInPage> {
   String? captchaId;
   String? captchaCode;
   final int naturalCodeLength = 10;
-  final FocusNode _focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -76,13 +75,17 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   inputPhoneNumber() {
-    return FarsiTextEditor(
-      inputLimit: phoneNumberLength,
+    return TextFormField(
+      maxLength: phoneNumberLength,
       textInputAction: TextInputAction.done,
       keyboardType: TextInputType.number,
-      onlyNumber: true,
-      borderRadius: Spacings.radiusMd,
-      onChange: (value) {
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+        decoration: InputDecoration(
+            border: UnderlineInputBorder(
+                borderRadius:BorderRadius.circular(5.0)),
+            hintText: 'Please enter a number'
+        ),
+      onChanged: (value) {
         setState(() {
           phone = value;
         });
@@ -90,7 +93,8 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  button(AuthState state, ThemeData theme) {
+
+    button(AuthState state, ThemeData theme) {
     return Padding(
         padding: const EdgeInsets.all(Spacings.marginLg),
         child: FilledButton(
