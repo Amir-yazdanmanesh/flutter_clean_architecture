@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/constanst/numbers/spacings.dart';
+import '../../../../core/utils/spaces.dart';
 import '../../../../core/utils/toasts.dart';
-import '../../../../core/widgets/simple_widgets.dart';
+import '../../../../core/widgets/label_widget.dart';
 import '../../domain/blocs/login/auth_cubit.dart';
 import 'otp_page.dart';
 

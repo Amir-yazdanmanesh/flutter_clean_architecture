@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:dio/dio.dart';
 
 import '../../feature/auth/data/model/error_response.dart';
 import '../resources/DataState.dart';
@@ -17,17 +16,6 @@ class APIFailure extends Failure {
   APIFailure(super.error);
 }
 
-/// This abstraction contains either a success data of generic type `S` or a
-/// failure error of type `Failure` as its result.
-///
-/// `data` property must only be retrieved when `DataResult` was constructed by
-/// using `DataResult.success(value)`. It can be validated by calling
-/// `isSuccess` first. Alternatively, `dataOrElse` can be used instead since it
-/// ensures a valid value is returned in case the result is a failure.
-///
-/// `error` must only be retrieved when `DataResult` was constructed by using
-/// `DataResult.failure(error)`. It can be validated by calling `isFailure`
-/// first.
 abstract class DataResult<S> extends Equatable {
   static DataResult<S> failure<S>(Failure failure) => _FailureResult(failure);
   static DataResult<S> success<S>(S data) => _SuccessResult(data);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constanst/numbers/spacings.dart';
+import '../utils/spaces.dart';
 
 class InputLabel extends StatelessWidget {
   final String title;

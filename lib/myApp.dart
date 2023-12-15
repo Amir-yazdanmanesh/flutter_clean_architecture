@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import 'core/constanst/general.dart';
+import 'core/utils/constanst.dart';
 import 'core/utils/Injector.dart';
 import 'feature/auth/domain/blocs/login/auth_cubit.dart';
 import 'feature/auth/presentation/pages/home_page.dart';
@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         locale: const Locale('fa'),
-        navigatorObservers: [GeneralConstants.routeObserver],
+        navigatorObservers: [Constants.routeObserver],
         routes: _routes,
         home: BlocProvider.value(
             value: getIt<AuthCubit>(), child: const LandingPage()

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../constanst/numbers/spacings.dart';
-import '../styles/colors.dart';
+import 'spaces.dart';
+import 'colors.dart';
 class Toast extends StatelessWidget {
   final String message;
   final Color bgColor;
