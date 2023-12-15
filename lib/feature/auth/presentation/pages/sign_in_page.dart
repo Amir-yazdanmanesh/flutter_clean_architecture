@@ -21,10 +21,6 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   final int phoneNumberLength = 11;
   String? phone;
-  String? naturalCode;
-  String? captchaId;
-  String? captchaCode;
-  final int naturalCodeLength = 10;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +98,7 @@ class _SignInPageState extends State<SignInPage> {
                 ? () {
                     context
                         .read<AuthCubit>()
-                        .submitPhone(phone!, naturalCode!);
+                        .submitPhone(phone!);
                   }
                 : null,
             style: FilledButton.styleFrom(
@@ -121,8 +117,7 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   bool validation() {
-    return (phone?.length ?? 0) == phoneNumberLength &&
-        (naturalCode?.length ?? 0) == naturalCodeLength;
+    return (phone?.length ?? 0) == phoneNumberLength;
   }
 }
 
