@@ -19,16 +19,12 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? requestId, String? errorMessage) initial,
-    required TResult Function(String? requestId, String? errorMessage) captcha,
-    required TResult Function() resendCodeLoading,
-    required TResult Function(String? requestId) resendVerificationCode,
-    required TResult Function(String? requestId) submitVerificationCode,
-    required TResult Function(String authToken) submitVerificationCodeComplete,
-    required TResult Function(String? errorMessage) submitVerificationCodeFail,
-    required TResult Function() submitPhoneLoading,
+    required TResult Function(String authToken) registerComplete,
+    required TResult Function(String? errorMessage) registerFail,
+    required TResult Function() registerLoading,
     required TResult Function() submitLoading,
-    required TResult Function(String? errorMessage) submitPhoneCompleteError,
-    required TResult Function(String? errorMessage) resendVerificationCodeError,
+    required TResult Function(String? authToken) submitPhone,
+    required TResult Function(String? errorMessage) loginError,
     required TResult Function() goToLogin,
     required TResult Function() goToHome,
   }) =>
@@ -36,16 +32,12 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? requestId, String? errorMessage)? initial,
-    TResult? Function(String? requestId, String? errorMessage)? captcha,
-    TResult? Function()? resendCodeLoading,
-    TResult? Function(String? requestId)? resendVerificationCode,
-    TResult? Function(String? requestId)? submitVerificationCode,
-    TResult? Function(String authToken)? submitVerificationCodeComplete,
-    TResult? Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult? Function()? submitPhoneLoading,
+    TResult? Function(String authToken)? registerComplete,
+    TResult? Function(String? errorMessage)? registerFail,
+    TResult? Function()? registerLoading,
     TResult? Function()? submitLoading,
-    TResult? Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult? Function(String? errorMessage)? resendVerificationCodeError,
+    TResult? Function(String? authToken)? submitPhone,
+    TResult? Function(String? errorMessage)? loginError,
     TResult? Function()? goToLogin,
     TResult? Function()? goToHome,
   }) =>
@@ -53,16 +45,12 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? requestId, String? errorMessage)? initial,
-    TResult Function(String? requestId, String? errorMessage)? captcha,
-    TResult Function()? resendCodeLoading,
-    TResult Function(String? requestId)? resendVerificationCode,
-    TResult Function(String? requestId)? submitVerificationCode,
-    TResult Function(String authToken)? submitVerificationCodeComplete,
-    TResult Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult Function()? submitPhoneLoading,
+    TResult Function(String authToken)? registerComplete,
+    TResult Function(String? errorMessage)? registerFail,
+    TResult Function()? registerLoading,
     TResult Function()? submitLoading,
-    TResult Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult Function(String? errorMessage)? resendVerificationCodeError,
+    TResult Function(String? authToken)? submitPhone,
+    TResult Function(String? errorMessage)? loginError,
     TResult Function()? goToLogin,
     TResult Function()? goToHome,
     required TResult orElse(),
@@ -71,22 +59,12 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitialState value) initial,
-    required TResult Function(CaptchaState value) captcha,
-    required TResult Function(ResendCodeLoadingState value) resendCodeLoading,
-    required TResult Function(ResendVerificationCodeState value)
-        resendVerificationCode,
-    required TResult Function(SubmitVerificationCodeState value)
-        submitVerificationCode,
-    required TResult Function(SubmitVerificationCodeCompleteState value)
-        submitVerificationCodeComplete,
-    required TResult Function(SubmitVerificationCodeFailState value)
-        submitVerificationCodeFail,
-    required TResult Function(SubmitPhoneLoadingState value) submitPhoneLoading,
-    required TResult Function(SubmitLoadingState value) submitLoading,
-    required TResult Function(SubmitPhoneCompleteError value)
-        submitPhoneCompleteError,
-    required TResult Function(ResendVerificationCodeError value)
-        resendVerificationCodeError,
+    required TResult Function(RegisterCompleteState value) registerComplete,
+    required TResult Function(RegisterFailedState value) registerFail,
+    required TResult Function(RegisterLoadingState value) registerLoading,
+    required TResult Function(LoginLoadingState value) submitLoading,
+    required TResult Function(LoginCompleteState value) submitPhone,
+    required TResult Function(LoginErrorState value) loginError,
     required TResult Function(GoToLoginState value) goToLogin,
     required TResult Function(goToHomeState value) goToHome,
   }) =>
@@ -94,21 +72,12 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitialState value)? initial,
-    TResult? Function(CaptchaState value)? captcha,
-    TResult? Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult? Function(ResendVerificationCodeState value)?
-        resendVerificationCode,
-    TResult? Function(SubmitVerificationCodeState value)?
-        submitVerificationCode,
-    TResult? Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult? Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult? Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult? Function(SubmitLoadingState value)? submitLoading,
-    TResult? Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult? Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult? Function(RegisterCompleteState value)? registerComplete,
+    TResult? Function(RegisterFailedState value)? registerFail,
+    TResult? Function(RegisterLoadingState value)? registerLoading,
+    TResult? Function(LoginLoadingState value)? submitLoading,
+    TResult? Function(LoginCompleteState value)? submitPhone,
+    TResult? Function(LoginErrorState value)? loginError,
     TResult? Function(GoToLoginState value)? goToLogin,
     TResult? Function(goToHomeState value)? goToHome,
   }) =>
@@ -116,19 +85,12 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialState value)? initial,
-    TResult Function(CaptchaState value)? captcha,
-    TResult Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult Function(ResendVerificationCodeState value)? resendVerificationCode,
-    TResult Function(SubmitVerificationCodeState value)? submitVerificationCode,
-    TResult Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult Function(SubmitLoadingState value)? submitLoading,
-    TResult Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult Function(RegisterCompleteState value)? registerComplete,
+    TResult Function(RegisterFailedState value)? registerFail,
+    TResult Function(RegisterLoadingState value)? registerLoading,
+    TResult Function(LoginLoadingState value)? submitLoading,
+    TResult Function(LoginCompleteState value)? submitPhone,
+    TResult Function(LoginErrorState value)? loginError,
     TResult Function(GoToLoginState value)? goToLogin,
     TResult Function(goToHomeState value)? goToHome,
     required TResult orElse(),
@@ -228,16 +190,12 @@ class _$InitialStateImpl implements InitialState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? requestId, String? errorMessage) initial,
-    required TResult Function(String? requestId, String? errorMessage) captcha,
-    required TResult Function() resendCodeLoading,
-    required TResult Function(String? requestId) resendVerificationCode,
-    required TResult Function(String? requestId) submitVerificationCode,
-    required TResult Function(String authToken) submitVerificationCodeComplete,
-    required TResult Function(String? errorMessage) submitVerificationCodeFail,
-    required TResult Function() submitPhoneLoading,
+    required TResult Function(String authToken) registerComplete,
+    required TResult Function(String? errorMessage) registerFail,
+    required TResult Function() registerLoading,
     required TResult Function() submitLoading,
-    required TResult Function(String? errorMessage) submitPhoneCompleteError,
-    required TResult Function(String? errorMessage) resendVerificationCodeError,
+    required TResult Function(String? authToken) submitPhone,
+    required TResult Function(String? errorMessage) loginError,
     required TResult Function() goToLogin,
     required TResult Function() goToHome,
   }) {
@@ -248,16 +206,12 @@ class _$InitialStateImpl implements InitialState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? requestId, String? errorMessage)? initial,
-    TResult? Function(String? requestId, String? errorMessage)? captcha,
-    TResult? Function()? resendCodeLoading,
-    TResult? Function(String? requestId)? resendVerificationCode,
-    TResult? Function(String? requestId)? submitVerificationCode,
-    TResult? Function(String authToken)? submitVerificationCodeComplete,
-    TResult? Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult? Function()? submitPhoneLoading,
+    TResult? Function(String authToken)? registerComplete,
+    TResult? Function(String? errorMessage)? registerFail,
+    TResult? Function()? registerLoading,
     TResult? Function()? submitLoading,
-    TResult? Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult? Function(String? errorMessage)? resendVerificationCodeError,
+    TResult? Function(String? authToken)? submitPhone,
+    TResult? Function(String? errorMessage)? loginError,
     TResult? Function()? goToLogin,
     TResult? Function()? goToHome,
   }) {
@@ -268,16 +222,12 @@ class _$InitialStateImpl implements InitialState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? requestId, String? errorMessage)? initial,
-    TResult Function(String? requestId, String? errorMessage)? captcha,
-    TResult Function()? resendCodeLoading,
-    TResult Function(String? requestId)? resendVerificationCode,
-    TResult Function(String? requestId)? submitVerificationCode,
-    TResult Function(String authToken)? submitVerificationCodeComplete,
-    TResult Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult Function()? submitPhoneLoading,
+    TResult Function(String authToken)? registerComplete,
+    TResult Function(String? errorMessage)? registerFail,
+    TResult Function()? registerLoading,
     TResult Function()? submitLoading,
-    TResult Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult Function(String? errorMessage)? resendVerificationCodeError,
+    TResult Function(String? authToken)? submitPhone,
+    TResult Function(String? errorMessage)? loginError,
     TResult Function()? goToLogin,
     TResult Function()? goToHome,
     required TResult orElse(),
@@ -292,22 +242,12 @@ class _$InitialStateImpl implements InitialState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitialState value) initial,
-    required TResult Function(CaptchaState value) captcha,
-    required TResult Function(ResendCodeLoadingState value) resendCodeLoading,
-    required TResult Function(ResendVerificationCodeState value)
-        resendVerificationCode,
-    required TResult Function(SubmitVerificationCodeState value)
-        submitVerificationCode,
-    required TResult Function(SubmitVerificationCodeCompleteState value)
-        submitVerificationCodeComplete,
-    required TResult Function(SubmitVerificationCodeFailState value)
-        submitVerificationCodeFail,
-    required TResult Function(SubmitPhoneLoadingState value) submitPhoneLoading,
-    required TResult Function(SubmitLoadingState value) submitLoading,
-    required TResult Function(SubmitPhoneCompleteError value)
-        submitPhoneCompleteError,
-    required TResult Function(ResendVerificationCodeError value)
-        resendVerificationCodeError,
+    required TResult Function(RegisterCompleteState value) registerComplete,
+    required TResult Function(RegisterFailedState value) registerFail,
+    required TResult Function(RegisterLoadingState value) registerLoading,
+    required TResult Function(LoginLoadingState value) submitLoading,
+    required TResult Function(LoginCompleteState value) submitPhone,
+    required TResult Function(LoginErrorState value) loginError,
     required TResult Function(GoToLoginState value) goToLogin,
     required TResult Function(goToHomeState value) goToHome,
   }) {
@@ -318,21 +258,12 @@ class _$InitialStateImpl implements InitialState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitialState value)? initial,
-    TResult? Function(CaptchaState value)? captcha,
-    TResult? Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult? Function(ResendVerificationCodeState value)?
-        resendVerificationCode,
-    TResult? Function(SubmitVerificationCodeState value)?
-        submitVerificationCode,
-    TResult? Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult? Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult? Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult? Function(SubmitLoadingState value)? submitLoading,
-    TResult? Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult? Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult? Function(RegisterCompleteState value)? registerComplete,
+    TResult? Function(RegisterFailedState value)? registerFail,
+    TResult? Function(RegisterLoadingState value)? registerLoading,
+    TResult? Function(LoginLoadingState value)? submitLoading,
+    TResult? Function(LoginCompleteState value)? submitPhone,
+    TResult? Function(LoginErrorState value)? loginError,
     TResult? Function(GoToLoginState value)? goToLogin,
     TResult? Function(goToHomeState value)? goToHome,
   }) {
@@ -343,19 +274,12 @@ class _$InitialStateImpl implements InitialState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialState value)? initial,
-    TResult Function(CaptchaState value)? captcha,
-    TResult Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult Function(ResendVerificationCodeState value)? resendVerificationCode,
-    TResult Function(SubmitVerificationCodeState value)? submitVerificationCode,
-    TResult Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult Function(SubmitLoadingState value)? submitLoading,
-    TResult Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult Function(RegisterCompleteState value)? registerComplete,
+    TResult Function(RegisterFailedState value)? registerFail,
+    TResult Function(RegisterLoadingState value)? registerLoading,
+    TResult Function(LoginLoadingState value)? submitLoading,
+    TResult Function(LoginCompleteState value)? submitPhone,
+    TResult Function(LoginErrorState value)? loginError,
     TResult Function(GoToLoginState value)? goToLogin,
     TResult Function(goToHomeState value)? goToHome,
     required TResult orElse(),
@@ -380,870 +304,21 @@ abstract class InitialState implements AuthState {
 }
 
 /// @nodoc
-abstract class _$$CaptchaStateImplCopyWith<$Res> {
-  factory _$$CaptchaStateImplCopyWith(
-          _$CaptchaStateImpl value, $Res Function(_$CaptchaStateImpl) then) =
-      __$$CaptchaStateImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String? requestId, String? errorMessage});
-}
-
-/// @nodoc
-class __$$CaptchaStateImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$CaptchaStateImpl>
-    implements _$$CaptchaStateImplCopyWith<$Res> {
-  __$$CaptchaStateImplCopyWithImpl(
-      _$CaptchaStateImpl _value, $Res Function(_$CaptchaStateImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? requestId = freezed,
-    Object? errorMessage = freezed,
-  }) {
-    return _then(_$CaptchaStateImpl(
-      requestId: freezed == requestId
-          ? _value.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CaptchaStateImpl implements CaptchaState {
-  const _$CaptchaStateImpl({this.requestId, this.errorMessage});
-
-  @override
-  final String? requestId;
-  @override
-  final String? errorMessage;
-
-  @override
-  String toString() {
-    return 'AuthState.captcha(requestId: $requestId, errorMessage: $errorMessage)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CaptchaStateImpl &&
-            (identical(other.requestId, requestId) ||
-                other.requestId == requestId) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, requestId, errorMessage);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CaptchaStateImplCopyWith<_$CaptchaStateImpl> get copyWith =>
-      __$$CaptchaStateImplCopyWithImpl<_$CaptchaStateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? requestId, String? errorMessage) initial,
-    required TResult Function(String? requestId, String? errorMessage) captcha,
-    required TResult Function() resendCodeLoading,
-    required TResult Function(String? requestId) resendVerificationCode,
-    required TResult Function(String? requestId) submitVerificationCode,
-    required TResult Function(String authToken) submitVerificationCodeComplete,
-    required TResult Function(String? errorMessage) submitVerificationCodeFail,
-    required TResult Function() submitPhoneLoading,
-    required TResult Function() submitLoading,
-    required TResult Function(String? errorMessage) submitPhoneCompleteError,
-    required TResult Function(String? errorMessage) resendVerificationCodeError,
-    required TResult Function() goToLogin,
-    required TResult Function() goToHome,
-  }) {
-    return captcha(requestId, errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? requestId, String? errorMessage)? initial,
-    TResult? Function(String? requestId, String? errorMessage)? captcha,
-    TResult? Function()? resendCodeLoading,
-    TResult? Function(String? requestId)? resendVerificationCode,
-    TResult? Function(String? requestId)? submitVerificationCode,
-    TResult? Function(String authToken)? submitVerificationCodeComplete,
-    TResult? Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult? Function()? submitPhoneLoading,
-    TResult? Function()? submitLoading,
-    TResult? Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult? Function(String? errorMessage)? resendVerificationCodeError,
-    TResult? Function()? goToLogin,
-    TResult? Function()? goToHome,
-  }) {
-    return captcha?.call(requestId, errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? requestId, String? errorMessage)? initial,
-    TResult Function(String? requestId, String? errorMessage)? captcha,
-    TResult Function()? resendCodeLoading,
-    TResult Function(String? requestId)? resendVerificationCode,
-    TResult Function(String? requestId)? submitVerificationCode,
-    TResult Function(String authToken)? submitVerificationCodeComplete,
-    TResult Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult Function()? submitPhoneLoading,
-    TResult Function()? submitLoading,
-    TResult Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult Function(String? errorMessage)? resendVerificationCodeError,
-    TResult Function()? goToLogin,
-    TResult Function()? goToHome,
-    required TResult orElse(),
-  }) {
-    if (captcha != null) {
-      return captcha(requestId, errorMessage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitialState value) initial,
-    required TResult Function(CaptchaState value) captcha,
-    required TResult Function(ResendCodeLoadingState value) resendCodeLoading,
-    required TResult Function(ResendVerificationCodeState value)
-        resendVerificationCode,
-    required TResult Function(SubmitVerificationCodeState value)
-        submitVerificationCode,
-    required TResult Function(SubmitVerificationCodeCompleteState value)
-        submitVerificationCodeComplete,
-    required TResult Function(SubmitVerificationCodeFailState value)
-        submitVerificationCodeFail,
-    required TResult Function(SubmitPhoneLoadingState value) submitPhoneLoading,
-    required TResult Function(SubmitLoadingState value) submitLoading,
-    required TResult Function(SubmitPhoneCompleteError value)
-        submitPhoneCompleteError,
-    required TResult Function(ResendVerificationCodeError value)
-        resendVerificationCodeError,
-    required TResult Function(GoToLoginState value) goToLogin,
-    required TResult Function(goToHomeState value) goToHome,
-  }) {
-    return captcha(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitialState value)? initial,
-    TResult? Function(CaptchaState value)? captcha,
-    TResult? Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult? Function(ResendVerificationCodeState value)?
-        resendVerificationCode,
-    TResult? Function(SubmitVerificationCodeState value)?
-        submitVerificationCode,
-    TResult? Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult? Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult? Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult? Function(SubmitLoadingState value)? submitLoading,
-    TResult? Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult? Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
-    TResult? Function(GoToLoginState value)? goToLogin,
-    TResult? Function(goToHomeState value)? goToHome,
-  }) {
-    return captcha?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialState value)? initial,
-    TResult Function(CaptchaState value)? captcha,
-    TResult Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult Function(ResendVerificationCodeState value)? resendVerificationCode,
-    TResult Function(SubmitVerificationCodeState value)? submitVerificationCode,
-    TResult Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult Function(SubmitLoadingState value)? submitLoading,
-    TResult Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
-    TResult Function(GoToLoginState value)? goToLogin,
-    TResult Function(goToHomeState value)? goToHome,
-    required TResult orElse(),
-  }) {
-    if (captcha != null) {
-      return captcha(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CaptchaState implements AuthState {
-  const factory CaptchaState(
-      {final String? requestId,
-      final String? errorMessage}) = _$CaptchaStateImpl;
-
-  String? get requestId;
-  String? get errorMessage;
-  @JsonKey(ignore: true)
-  _$$CaptchaStateImplCopyWith<_$CaptchaStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ResendCodeLoadingStateImplCopyWith<$Res> {
-  factory _$$ResendCodeLoadingStateImplCopyWith(
-          _$ResendCodeLoadingStateImpl value,
-          $Res Function(_$ResendCodeLoadingStateImpl) then) =
-      __$$ResendCodeLoadingStateImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ResendCodeLoadingStateImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$ResendCodeLoadingStateImpl>
-    implements _$$ResendCodeLoadingStateImplCopyWith<$Res> {
-  __$$ResendCodeLoadingStateImplCopyWithImpl(
-      _$ResendCodeLoadingStateImpl _value,
-      $Res Function(_$ResendCodeLoadingStateImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ResendCodeLoadingStateImpl implements ResendCodeLoadingState {
-  const _$ResendCodeLoadingStateImpl();
-
-  @override
-  String toString() {
-    return 'AuthState.resendCodeLoading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ResendCodeLoadingStateImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? requestId, String? errorMessage) initial,
-    required TResult Function(String? requestId, String? errorMessage) captcha,
-    required TResult Function() resendCodeLoading,
-    required TResult Function(String? requestId) resendVerificationCode,
-    required TResult Function(String? requestId) submitVerificationCode,
-    required TResult Function(String authToken) submitVerificationCodeComplete,
-    required TResult Function(String? errorMessage) submitVerificationCodeFail,
-    required TResult Function() submitPhoneLoading,
-    required TResult Function() submitLoading,
-    required TResult Function(String? errorMessage) submitPhoneCompleteError,
-    required TResult Function(String? errorMessage) resendVerificationCodeError,
-    required TResult Function() goToLogin,
-    required TResult Function() goToHome,
-  }) {
-    return resendCodeLoading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? requestId, String? errorMessage)? initial,
-    TResult? Function(String? requestId, String? errorMessage)? captcha,
-    TResult? Function()? resendCodeLoading,
-    TResult? Function(String? requestId)? resendVerificationCode,
-    TResult? Function(String? requestId)? submitVerificationCode,
-    TResult? Function(String authToken)? submitVerificationCodeComplete,
-    TResult? Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult? Function()? submitPhoneLoading,
-    TResult? Function()? submitLoading,
-    TResult? Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult? Function(String? errorMessage)? resendVerificationCodeError,
-    TResult? Function()? goToLogin,
-    TResult? Function()? goToHome,
-  }) {
-    return resendCodeLoading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? requestId, String? errorMessage)? initial,
-    TResult Function(String? requestId, String? errorMessage)? captcha,
-    TResult Function()? resendCodeLoading,
-    TResult Function(String? requestId)? resendVerificationCode,
-    TResult Function(String? requestId)? submitVerificationCode,
-    TResult Function(String authToken)? submitVerificationCodeComplete,
-    TResult Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult Function()? submitPhoneLoading,
-    TResult Function()? submitLoading,
-    TResult Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult Function(String? errorMessage)? resendVerificationCodeError,
-    TResult Function()? goToLogin,
-    TResult Function()? goToHome,
-    required TResult orElse(),
-  }) {
-    if (resendCodeLoading != null) {
-      return resendCodeLoading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitialState value) initial,
-    required TResult Function(CaptchaState value) captcha,
-    required TResult Function(ResendCodeLoadingState value) resendCodeLoading,
-    required TResult Function(ResendVerificationCodeState value)
-        resendVerificationCode,
-    required TResult Function(SubmitVerificationCodeState value)
-        submitVerificationCode,
-    required TResult Function(SubmitVerificationCodeCompleteState value)
-        submitVerificationCodeComplete,
-    required TResult Function(SubmitVerificationCodeFailState value)
-        submitVerificationCodeFail,
-    required TResult Function(SubmitPhoneLoadingState value) submitPhoneLoading,
-    required TResult Function(SubmitLoadingState value) submitLoading,
-    required TResult Function(SubmitPhoneCompleteError value)
-        submitPhoneCompleteError,
-    required TResult Function(ResendVerificationCodeError value)
-        resendVerificationCodeError,
-    required TResult Function(GoToLoginState value) goToLogin,
-    required TResult Function(goToHomeState value) goToHome,
-  }) {
-    return resendCodeLoading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitialState value)? initial,
-    TResult? Function(CaptchaState value)? captcha,
-    TResult? Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult? Function(ResendVerificationCodeState value)?
-        resendVerificationCode,
-    TResult? Function(SubmitVerificationCodeState value)?
-        submitVerificationCode,
-    TResult? Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult? Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult? Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult? Function(SubmitLoadingState value)? submitLoading,
-    TResult? Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult? Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
-    TResult? Function(GoToLoginState value)? goToLogin,
-    TResult? Function(goToHomeState value)? goToHome,
-  }) {
-    return resendCodeLoading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialState value)? initial,
-    TResult Function(CaptchaState value)? captcha,
-    TResult Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult Function(ResendVerificationCodeState value)? resendVerificationCode,
-    TResult Function(SubmitVerificationCodeState value)? submitVerificationCode,
-    TResult Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult Function(SubmitLoadingState value)? submitLoading,
-    TResult Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
-    TResult Function(GoToLoginState value)? goToLogin,
-    TResult Function(goToHomeState value)? goToHome,
-    required TResult orElse(),
-  }) {
-    if (resendCodeLoading != null) {
-      return resendCodeLoading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ResendCodeLoadingState implements AuthState {
-  const factory ResendCodeLoadingState() = _$ResendCodeLoadingStateImpl;
-}
-
-/// @nodoc
-abstract class _$$ResendVerificationCodeStateImplCopyWith<$Res> {
-  factory _$$ResendVerificationCodeStateImplCopyWith(
-          _$ResendVerificationCodeStateImpl value,
-          $Res Function(_$ResendVerificationCodeStateImpl) then) =
-      __$$ResendVerificationCodeStateImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String? requestId});
-}
-
-/// @nodoc
-class __$$ResendVerificationCodeStateImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$ResendVerificationCodeStateImpl>
-    implements _$$ResendVerificationCodeStateImplCopyWith<$Res> {
-  __$$ResendVerificationCodeStateImplCopyWithImpl(
-      _$ResendVerificationCodeStateImpl _value,
-      $Res Function(_$ResendVerificationCodeStateImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? requestId = freezed,
-  }) {
-    return _then(_$ResendVerificationCodeStateImpl(
-      requestId: freezed == requestId
-          ? _value.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ResendVerificationCodeStateImpl implements ResendVerificationCodeState {
-  const _$ResendVerificationCodeStateImpl({this.requestId});
-
-  @override
-  final String? requestId;
-
-  @override
-  String toString() {
-    return 'AuthState.resendVerificationCode(requestId: $requestId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ResendVerificationCodeStateImpl &&
-            (identical(other.requestId, requestId) ||
-                other.requestId == requestId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, requestId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ResendVerificationCodeStateImplCopyWith<_$ResendVerificationCodeStateImpl>
-      get copyWith => __$$ResendVerificationCodeStateImplCopyWithImpl<
-          _$ResendVerificationCodeStateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? requestId, String? errorMessage) initial,
-    required TResult Function(String? requestId, String? errorMessage) captcha,
-    required TResult Function() resendCodeLoading,
-    required TResult Function(String? requestId) resendVerificationCode,
-    required TResult Function(String? requestId) submitVerificationCode,
-    required TResult Function(String authToken) submitVerificationCodeComplete,
-    required TResult Function(String? errorMessage) submitVerificationCodeFail,
-    required TResult Function() submitPhoneLoading,
-    required TResult Function() submitLoading,
-    required TResult Function(String? errorMessage) submitPhoneCompleteError,
-    required TResult Function(String? errorMessage) resendVerificationCodeError,
-    required TResult Function() goToLogin,
-    required TResult Function() goToHome,
-  }) {
-    return resendVerificationCode(requestId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? requestId, String? errorMessage)? initial,
-    TResult? Function(String? requestId, String? errorMessage)? captcha,
-    TResult? Function()? resendCodeLoading,
-    TResult? Function(String? requestId)? resendVerificationCode,
-    TResult? Function(String? requestId)? submitVerificationCode,
-    TResult? Function(String authToken)? submitVerificationCodeComplete,
-    TResult? Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult? Function()? submitPhoneLoading,
-    TResult? Function()? submitLoading,
-    TResult? Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult? Function(String? errorMessage)? resendVerificationCodeError,
-    TResult? Function()? goToLogin,
-    TResult? Function()? goToHome,
-  }) {
-    return resendVerificationCode?.call(requestId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? requestId, String? errorMessage)? initial,
-    TResult Function(String? requestId, String? errorMessage)? captcha,
-    TResult Function()? resendCodeLoading,
-    TResult Function(String? requestId)? resendVerificationCode,
-    TResult Function(String? requestId)? submitVerificationCode,
-    TResult Function(String authToken)? submitVerificationCodeComplete,
-    TResult Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult Function()? submitPhoneLoading,
-    TResult Function()? submitLoading,
-    TResult Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult Function(String? errorMessage)? resendVerificationCodeError,
-    TResult Function()? goToLogin,
-    TResult Function()? goToHome,
-    required TResult orElse(),
-  }) {
-    if (resendVerificationCode != null) {
-      return resendVerificationCode(requestId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitialState value) initial,
-    required TResult Function(CaptchaState value) captcha,
-    required TResult Function(ResendCodeLoadingState value) resendCodeLoading,
-    required TResult Function(ResendVerificationCodeState value)
-        resendVerificationCode,
-    required TResult Function(SubmitVerificationCodeState value)
-        submitVerificationCode,
-    required TResult Function(SubmitVerificationCodeCompleteState value)
-        submitVerificationCodeComplete,
-    required TResult Function(SubmitVerificationCodeFailState value)
-        submitVerificationCodeFail,
-    required TResult Function(SubmitPhoneLoadingState value) submitPhoneLoading,
-    required TResult Function(SubmitLoadingState value) submitLoading,
-    required TResult Function(SubmitPhoneCompleteError value)
-        submitPhoneCompleteError,
-    required TResult Function(ResendVerificationCodeError value)
-        resendVerificationCodeError,
-    required TResult Function(GoToLoginState value) goToLogin,
-    required TResult Function(goToHomeState value) goToHome,
-  }) {
-    return resendVerificationCode(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitialState value)? initial,
-    TResult? Function(CaptchaState value)? captcha,
-    TResult? Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult? Function(ResendVerificationCodeState value)?
-        resendVerificationCode,
-    TResult? Function(SubmitVerificationCodeState value)?
-        submitVerificationCode,
-    TResult? Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult? Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult? Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult? Function(SubmitLoadingState value)? submitLoading,
-    TResult? Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult? Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
-    TResult? Function(GoToLoginState value)? goToLogin,
-    TResult? Function(goToHomeState value)? goToHome,
-  }) {
-    return resendVerificationCode?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialState value)? initial,
-    TResult Function(CaptchaState value)? captcha,
-    TResult Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult Function(ResendVerificationCodeState value)? resendVerificationCode,
-    TResult Function(SubmitVerificationCodeState value)? submitVerificationCode,
-    TResult Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult Function(SubmitLoadingState value)? submitLoading,
-    TResult Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
-    TResult Function(GoToLoginState value)? goToLogin,
-    TResult Function(goToHomeState value)? goToHome,
-    required TResult orElse(),
-  }) {
-    if (resendVerificationCode != null) {
-      return resendVerificationCode(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ResendVerificationCodeState implements AuthState {
-  const factory ResendVerificationCodeState({final String? requestId}) =
-      _$ResendVerificationCodeStateImpl;
-
-  String? get requestId;
-  @JsonKey(ignore: true)
-  _$$ResendVerificationCodeStateImplCopyWith<_$ResendVerificationCodeStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SubmitVerificationCodeStateImplCopyWith<$Res> {
-  factory _$$SubmitVerificationCodeStateImplCopyWith(
-          _$SubmitVerificationCodeStateImpl value,
-          $Res Function(_$SubmitVerificationCodeStateImpl) then) =
-      __$$SubmitVerificationCodeStateImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String? requestId});
-}
-
-/// @nodoc
-class __$$SubmitVerificationCodeStateImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$SubmitVerificationCodeStateImpl>
-    implements _$$SubmitVerificationCodeStateImplCopyWith<$Res> {
-  __$$SubmitVerificationCodeStateImplCopyWithImpl(
-      _$SubmitVerificationCodeStateImpl _value,
-      $Res Function(_$SubmitVerificationCodeStateImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? requestId = freezed,
-  }) {
-    return _then(_$SubmitVerificationCodeStateImpl(
-      requestId: freezed == requestId
-          ? _value.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SubmitVerificationCodeStateImpl implements SubmitVerificationCodeState {
-  const _$SubmitVerificationCodeStateImpl({this.requestId});
-
-  @override
-  final String? requestId;
-
-  @override
-  String toString() {
-    return 'AuthState.submitVerificationCode(requestId: $requestId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SubmitVerificationCodeStateImpl &&
-            (identical(other.requestId, requestId) ||
-                other.requestId == requestId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, requestId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SubmitVerificationCodeStateImplCopyWith<_$SubmitVerificationCodeStateImpl>
-      get copyWith => __$$SubmitVerificationCodeStateImplCopyWithImpl<
-          _$SubmitVerificationCodeStateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? requestId, String? errorMessage) initial,
-    required TResult Function(String? requestId, String? errorMessage) captcha,
-    required TResult Function() resendCodeLoading,
-    required TResult Function(String? requestId) resendVerificationCode,
-    required TResult Function(String? requestId) submitVerificationCode,
-    required TResult Function(String authToken) submitVerificationCodeComplete,
-    required TResult Function(String? errorMessage) submitVerificationCodeFail,
-    required TResult Function() submitPhoneLoading,
-    required TResult Function() submitLoading,
-    required TResult Function(String? errorMessage) submitPhoneCompleteError,
-    required TResult Function(String? errorMessage) resendVerificationCodeError,
-    required TResult Function() goToLogin,
-    required TResult Function() goToHome,
-  }) {
-    return submitVerificationCode(requestId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? requestId, String? errorMessage)? initial,
-    TResult? Function(String? requestId, String? errorMessage)? captcha,
-    TResult? Function()? resendCodeLoading,
-    TResult? Function(String? requestId)? resendVerificationCode,
-    TResult? Function(String? requestId)? submitVerificationCode,
-    TResult? Function(String authToken)? submitVerificationCodeComplete,
-    TResult? Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult? Function()? submitPhoneLoading,
-    TResult? Function()? submitLoading,
-    TResult? Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult? Function(String? errorMessage)? resendVerificationCodeError,
-    TResult? Function()? goToLogin,
-    TResult? Function()? goToHome,
-  }) {
-    return submitVerificationCode?.call(requestId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? requestId, String? errorMessage)? initial,
-    TResult Function(String? requestId, String? errorMessage)? captcha,
-    TResult Function()? resendCodeLoading,
-    TResult Function(String? requestId)? resendVerificationCode,
-    TResult Function(String? requestId)? submitVerificationCode,
-    TResult Function(String authToken)? submitVerificationCodeComplete,
-    TResult Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult Function()? submitPhoneLoading,
-    TResult Function()? submitLoading,
-    TResult Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult Function(String? errorMessage)? resendVerificationCodeError,
-    TResult Function()? goToLogin,
-    TResult Function()? goToHome,
-    required TResult orElse(),
-  }) {
-    if (submitVerificationCode != null) {
-      return submitVerificationCode(requestId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitialState value) initial,
-    required TResult Function(CaptchaState value) captcha,
-    required TResult Function(ResendCodeLoadingState value) resendCodeLoading,
-    required TResult Function(ResendVerificationCodeState value)
-        resendVerificationCode,
-    required TResult Function(SubmitVerificationCodeState value)
-        submitVerificationCode,
-    required TResult Function(SubmitVerificationCodeCompleteState value)
-        submitVerificationCodeComplete,
-    required TResult Function(SubmitVerificationCodeFailState value)
-        submitVerificationCodeFail,
-    required TResult Function(SubmitPhoneLoadingState value) submitPhoneLoading,
-    required TResult Function(SubmitLoadingState value) submitLoading,
-    required TResult Function(SubmitPhoneCompleteError value)
-        submitPhoneCompleteError,
-    required TResult Function(ResendVerificationCodeError value)
-        resendVerificationCodeError,
-    required TResult Function(GoToLoginState value) goToLogin,
-    required TResult Function(goToHomeState value) goToHome,
-  }) {
-    return submitVerificationCode(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitialState value)? initial,
-    TResult? Function(CaptchaState value)? captcha,
-    TResult? Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult? Function(ResendVerificationCodeState value)?
-        resendVerificationCode,
-    TResult? Function(SubmitVerificationCodeState value)?
-        submitVerificationCode,
-    TResult? Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult? Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult? Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult? Function(SubmitLoadingState value)? submitLoading,
-    TResult? Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult? Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
-    TResult? Function(GoToLoginState value)? goToLogin,
-    TResult? Function(goToHomeState value)? goToHome,
-  }) {
-    return submitVerificationCode?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialState value)? initial,
-    TResult Function(CaptchaState value)? captcha,
-    TResult Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult Function(ResendVerificationCodeState value)? resendVerificationCode,
-    TResult Function(SubmitVerificationCodeState value)? submitVerificationCode,
-    TResult Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult Function(SubmitLoadingState value)? submitLoading,
-    TResult Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
-    TResult Function(GoToLoginState value)? goToLogin,
-    TResult Function(goToHomeState value)? goToHome,
-    required TResult orElse(),
-  }) {
-    if (submitVerificationCode != null) {
-      return submitVerificationCode(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SubmitVerificationCodeState implements AuthState {
-  const factory SubmitVerificationCodeState({final String? requestId}) =
-      _$SubmitVerificationCodeStateImpl;
-
-  String? get requestId;
-  @JsonKey(ignore: true)
-  _$$SubmitVerificationCodeStateImplCopyWith<_$SubmitVerificationCodeStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SubmitVerificationCodeCompleteStateImplCopyWith<$Res> {
-  factory _$$SubmitVerificationCodeCompleteStateImplCopyWith(
-          _$SubmitVerificationCodeCompleteStateImpl value,
-          $Res Function(_$SubmitVerificationCodeCompleteStateImpl) then) =
-      __$$SubmitVerificationCodeCompleteStateImplCopyWithImpl<$Res>;
+abstract class _$$RegisterCompleteStateImplCopyWith<$Res> {
+  factory _$$RegisterCompleteStateImplCopyWith(
+          _$RegisterCompleteStateImpl value,
+          $Res Function(_$RegisterCompleteStateImpl) then) =
+      __$$RegisterCompleteStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String authToken});
 }
 
 /// @nodoc
-class __$$SubmitVerificationCodeCompleteStateImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res,
-        _$SubmitVerificationCodeCompleteStateImpl>
-    implements _$$SubmitVerificationCodeCompleteStateImplCopyWith<$Res> {
-  __$$SubmitVerificationCodeCompleteStateImplCopyWithImpl(
-      _$SubmitVerificationCodeCompleteStateImpl _value,
-      $Res Function(_$SubmitVerificationCodeCompleteStateImpl) _then)
+class __$$RegisterCompleteStateImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$RegisterCompleteStateImpl>
+    implements _$$RegisterCompleteStateImplCopyWith<$Res> {
+  __$$RegisterCompleteStateImplCopyWithImpl(_$RegisterCompleteStateImpl _value,
+      $Res Function(_$RegisterCompleteStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1251,7 +326,7 @@ class __$$SubmitVerificationCodeCompleteStateImplCopyWithImpl<$Res>
   $Res call({
     Object? authToken = null,
   }) {
-    return _then(_$SubmitVerificationCodeCompleteStateImpl(
+    return _then(_$RegisterCompleteStateImpl(
       authToken: null == authToken
           ? _value.authToken
           : authToken // ignore: cast_nullable_to_non_nullable
@@ -1262,23 +337,22 @@ class __$$SubmitVerificationCodeCompleteStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SubmitVerificationCodeCompleteStateImpl
-    implements SubmitVerificationCodeCompleteState {
-  const _$SubmitVerificationCodeCompleteStateImpl({required this.authToken});
+class _$RegisterCompleteStateImpl implements RegisterCompleteState {
+  const _$RegisterCompleteStateImpl({required this.authToken});
 
   @override
   final String authToken;
 
   @override
   String toString() {
-    return 'AuthState.submitVerificationCodeComplete(authToken: $authToken)';
+    return 'AuthState.registerComplete(authToken: $authToken)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SubmitVerificationCodeCompleteStateImpl &&
+            other is _$RegisterCompleteStateImpl &&
             (identical(other.authToken, authToken) ||
                 other.authToken == authToken));
   }
@@ -1289,71 +363,58 @@ class _$SubmitVerificationCodeCompleteStateImpl
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SubmitVerificationCodeCompleteStateImplCopyWith<
-          _$SubmitVerificationCodeCompleteStateImpl>
-      get copyWith => __$$SubmitVerificationCodeCompleteStateImplCopyWithImpl<
-          _$SubmitVerificationCodeCompleteStateImpl>(this, _$identity);
+  _$$RegisterCompleteStateImplCopyWith<_$RegisterCompleteStateImpl>
+      get copyWith => __$$RegisterCompleteStateImplCopyWithImpl<
+          _$RegisterCompleteStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? requestId, String? errorMessage) initial,
-    required TResult Function(String? requestId, String? errorMessage) captcha,
-    required TResult Function() resendCodeLoading,
-    required TResult Function(String? requestId) resendVerificationCode,
-    required TResult Function(String? requestId) submitVerificationCode,
-    required TResult Function(String authToken) submitVerificationCodeComplete,
-    required TResult Function(String? errorMessage) submitVerificationCodeFail,
-    required TResult Function() submitPhoneLoading,
+    required TResult Function(String authToken) registerComplete,
+    required TResult Function(String? errorMessage) registerFail,
+    required TResult Function() registerLoading,
     required TResult Function() submitLoading,
-    required TResult Function(String? errorMessage) submitPhoneCompleteError,
-    required TResult Function(String? errorMessage) resendVerificationCodeError,
+    required TResult Function(String? authToken) submitPhone,
+    required TResult Function(String? errorMessage) loginError,
     required TResult Function() goToLogin,
     required TResult Function() goToHome,
   }) {
-    return submitVerificationCodeComplete(authToken);
+    return registerComplete(authToken);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? requestId, String? errorMessage)? initial,
-    TResult? Function(String? requestId, String? errorMessage)? captcha,
-    TResult? Function()? resendCodeLoading,
-    TResult? Function(String? requestId)? resendVerificationCode,
-    TResult? Function(String? requestId)? submitVerificationCode,
-    TResult? Function(String authToken)? submitVerificationCodeComplete,
-    TResult? Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult? Function()? submitPhoneLoading,
+    TResult? Function(String authToken)? registerComplete,
+    TResult? Function(String? errorMessage)? registerFail,
+    TResult? Function()? registerLoading,
     TResult? Function()? submitLoading,
-    TResult? Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult? Function(String? errorMessage)? resendVerificationCodeError,
+    TResult? Function(String? authToken)? submitPhone,
+    TResult? Function(String? errorMessage)? loginError,
     TResult? Function()? goToLogin,
     TResult? Function()? goToHome,
   }) {
-    return submitVerificationCodeComplete?.call(authToken);
+    return registerComplete?.call(authToken);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? requestId, String? errorMessage)? initial,
-    TResult Function(String? requestId, String? errorMessage)? captcha,
-    TResult Function()? resendCodeLoading,
-    TResult Function(String? requestId)? resendVerificationCode,
-    TResult Function(String? requestId)? submitVerificationCode,
-    TResult Function(String authToken)? submitVerificationCodeComplete,
-    TResult Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult Function()? submitPhoneLoading,
+    TResult Function(String authToken)? registerComplete,
+    TResult Function(String? errorMessage)? registerFail,
+    TResult Function()? registerLoading,
     TResult Function()? submitLoading,
-    TResult Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult Function(String? errorMessage)? resendVerificationCodeError,
+    TResult Function(String? authToken)? submitPhone,
+    TResult Function(String? errorMessage)? loginError,
     TResult Function()? goToLogin,
     TResult Function()? goToHome,
     required TResult orElse(),
   }) {
-    if (submitVerificationCodeComplete != null) {
-      return submitVerificationCodeComplete(authToken);
+    if (registerComplete != null) {
+      return registerComplete(authToken);
     }
     return orElse();
   }
@@ -1362,110 +423,80 @@ class _$SubmitVerificationCodeCompleteStateImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitialState value) initial,
-    required TResult Function(CaptchaState value) captcha,
-    required TResult Function(ResendCodeLoadingState value) resendCodeLoading,
-    required TResult Function(ResendVerificationCodeState value)
-        resendVerificationCode,
-    required TResult Function(SubmitVerificationCodeState value)
-        submitVerificationCode,
-    required TResult Function(SubmitVerificationCodeCompleteState value)
-        submitVerificationCodeComplete,
-    required TResult Function(SubmitVerificationCodeFailState value)
-        submitVerificationCodeFail,
-    required TResult Function(SubmitPhoneLoadingState value) submitPhoneLoading,
-    required TResult Function(SubmitLoadingState value) submitLoading,
-    required TResult Function(SubmitPhoneCompleteError value)
-        submitPhoneCompleteError,
-    required TResult Function(ResendVerificationCodeError value)
-        resendVerificationCodeError,
+    required TResult Function(RegisterCompleteState value) registerComplete,
+    required TResult Function(RegisterFailedState value) registerFail,
+    required TResult Function(RegisterLoadingState value) registerLoading,
+    required TResult Function(LoginLoadingState value) submitLoading,
+    required TResult Function(LoginCompleteState value) submitPhone,
+    required TResult Function(LoginErrorState value) loginError,
     required TResult Function(GoToLoginState value) goToLogin,
     required TResult Function(goToHomeState value) goToHome,
   }) {
-    return submitVerificationCodeComplete(this);
+    return registerComplete(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitialState value)? initial,
-    TResult? Function(CaptchaState value)? captcha,
-    TResult? Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult? Function(ResendVerificationCodeState value)?
-        resendVerificationCode,
-    TResult? Function(SubmitVerificationCodeState value)?
-        submitVerificationCode,
-    TResult? Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult? Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult? Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult? Function(SubmitLoadingState value)? submitLoading,
-    TResult? Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult? Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult? Function(RegisterCompleteState value)? registerComplete,
+    TResult? Function(RegisterFailedState value)? registerFail,
+    TResult? Function(RegisterLoadingState value)? registerLoading,
+    TResult? Function(LoginLoadingState value)? submitLoading,
+    TResult? Function(LoginCompleteState value)? submitPhone,
+    TResult? Function(LoginErrorState value)? loginError,
     TResult? Function(GoToLoginState value)? goToLogin,
     TResult? Function(goToHomeState value)? goToHome,
   }) {
-    return submitVerificationCodeComplete?.call(this);
+    return registerComplete?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialState value)? initial,
-    TResult Function(CaptchaState value)? captcha,
-    TResult Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult Function(ResendVerificationCodeState value)? resendVerificationCode,
-    TResult Function(SubmitVerificationCodeState value)? submitVerificationCode,
-    TResult Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult Function(SubmitLoadingState value)? submitLoading,
-    TResult Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult Function(RegisterCompleteState value)? registerComplete,
+    TResult Function(RegisterFailedState value)? registerFail,
+    TResult Function(RegisterLoadingState value)? registerLoading,
+    TResult Function(LoginLoadingState value)? submitLoading,
+    TResult Function(LoginCompleteState value)? submitPhone,
+    TResult Function(LoginErrorState value)? loginError,
     TResult Function(GoToLoginState value)? goToLogin,
     TResult Function(goToHomeState value)? goToHome,
     required TResult orElse(),
   }) {
-    if (submitVerificationCodeComplete != null) {
-      return submitVerificationCodeComplete(this);
+    if (registerComplete != null) {
+      return registerComplete(this);
     }
     return orElse();
   }
 }
 
-abstract class SubmitVerificationCodeCompleteState implements AuthState {
-  const factory SubmitVerificationCodeCompleteState(
-          {required final String authToken}) =
-      _$SubmitVerificationCodeCompleteStateImpl;
+abstract class RegisterCompleteState implements AuthState {
+  const factory RegisterCompleteState({required final String authToken}) =
+      _$RegisterCompleteStateImpl;
 
   String get authToken;
   @JsonKey(ignore: true)
-  _$$SubmitVerificationCodeCompleteStateImplCopyWith<
-          _$SubmitVerificationCodeCompleteStateImpl>
+  _$$RegisterCompleteStateImplCopyWith<_$RegisterCompleteStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SubmitVerificationCodeFailStateImplCopyWith<$Res> {
-  factory _$$SubmitVerificationCodeFailStateImplCopyWith(
-          _$SubmitVerificationCodeFailStateImpl value,
-          $Res Function(_$SubmitVerificationCodeFailStateImpl) then) =
-      __$$SubmitVerificationCodeFailStateImplCopyWithImpl<$Res>;
+abstract class _$$RegisterFailedStateImplCopyWith<$Res> {
+  factory _$$RegisterFailedStateImplCopyWith(_$RegisterFailedStateImpl value,
+          $Res Function(_$RegisterFailedStateImpl) then) =
+      __$$RegisterFailedStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String? errorMessage});
 }
 
 /// @nodoc
-class __$$SubmitVerificationCodeFailStateImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$SubmitVerificationCodeFailStateImpl>
-    implements _$$SubmitVerificationCodeFailStateImplCopyWith<$Res> {
-  __$$SubmitVerificationCodeFailStateImplCopyWithImpl(
-      _$SubmitVerificationCodeFailStateImpl _value,
-      $Res Function(_$SubmitVerificationCodeFailStateImpl) _then)
+class __$$RegisterFailedStateImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$RegisterFailedStateImpl>
+    implements _$$RegisterFailedStateImplCopyWith<$Res> {
+  __$$RegisterFailedStateImplCopyWithImpl(_$RegisterFailedStateImpl _value,
+      $Res Function(_$RegisterFailedStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1473,7 +504,7 @@ class __$$SubmitVerificationCodeFailStateImplCopyWithImpl<$Res>
   $Res call({
     Object? errorMessage = freezed,
   }) {
-    return _then(_$SubmitVerificationCodeFailStateImpl(
+    return _then(_$RegisterFailedStateImpl(
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -1484,23 +515,22 @@ class __$$SubmitVerificationCodeFailStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SubmitVerificationCodeFailStateImpl
-    implements SubmitVerificationCodeFailState {
-  const _$SubmitVerificationCodeFailStateImpl({this.errorMessage});
+class _$RegisterFailedStateImpl implements RegisterFailedState {
+  const _$RegisterFailedStateImpl({this.errorMessage});
 
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'AuthState.submitVerificationCodeFail(errorMessage: $errorMessage)';
+    return 'AuthState.registerFail(errorMessage: $errorMessage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SubmitVerificationCodeFailStateImpl &&
+            other is _$RegisterFailedStateImpl &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
@@ -1511,71 +541,58 @@ class _$SubmitVerificationCodeFailStateImpl
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SubmitVerificationCodeFailStateImplCopyWith<
-          _$SubmitVerificationCodeFailStateImpl>
-      get copyWith => __$$SubmitVerificationCodeFailStateImplCopyWithImpl<
-          _$SubmitVerificationCodeFailStateImpl>(this, _$identity);
+  _$$RegisterFailedStateImplCopyWith<_$RegisterFailedStateImpl> get copyWith =>
+      __$$RegisterFailedStateImplCopyWithImpl<_$RegisterFailedStateImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? requestId, String? errorMessage) initial,
-    required TResult Function(String? requestId, String? errorMessage) captcha,
-    required TResult Function() resendCodeLoading,
-    required TResult Function(String? requestId) resendVerificationCode,
-    required TResult Function(String? requestId) submitVerificationCode,
-    required TResult Function(String authToken) submitVerificationCodeComplete,
-    required TResult Function(String? errorMessage) submitVerificationCodeFail,
-    required TResult Function() submitPhoneLoading,
+    required TResult Function(String authToken) registerComplete,
+    required TResult Function(String? errorMessage) registerFail,
+    required TResult Function() registerLoading,
     required TResult Function() submitLoading,
-    required TResult Function(String? errorMessage) submitPhoneCompleteError,
-    required TResult Function(String? errorMessage) resendVerificationCodeError,
+    required TResult Function(String? authToken) submitPhone,
+    required TResult Function(String? errorMessage) loginError,
     required TResult Function() goToLogin,
     required TResult Function() goToHome,
   }) {
-    return submitVerificationCodeFail(errorMessage);
+    return registerFail(errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? requestId, String? errorMessage)? initial,
-    TResult? Function(String? requestId, String? errorMessage)? captcha,
-    TResult? Function()? resendCodeLoading,
-    TResult? Function(String? requestId)? resendVerificationCode,
-    TResult? Function(String? requestId)? submitVerificationCode,
-    TResult? Function(String authToken)? submitVerificationCodeComplete,
-    TResult? Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult? Function()? submitPhoneLoading,
+    TResult? Function(String authToken)? registerComplete,
+    TResult? Function(String? errorMessage)? registerFail,
+    TResult? Function()? registerLoading,
     TResult? Function()? submitLoading,
-    TResult? Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult? Function(String? errorMessage)? resendVerificationCodeError,
+    TResult? Function(String? authToken)? submitPhone,
+    TResult? Function(String? errorMessage)? loginError,
     TResult? Function()? goToLogin,
     TResult? Function()? goToHome,
   }) {
-    return submitVerificationCodeFail?.call(errorMessage);
+    return registerFail?.call(errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? requestId, String? errorMessage)? initial,
-    TResult Function(String? requestId, String? errorMessage)? captcha,
-    TResult Function()? resendCodeLoading,
-    TResult Function(String? requestId)? resendVerificationCode,
-    TResult Function(String? requestId)? submitVerificationCode,
-    TResult Function(String authToken)? submitVerificationCodeComplete,
-    TResult Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult Function()? submitPhoneLoading,
+    TResult Function(String authToken)? registerComplete,
+    TResult Function(String? errorMessage)? registerFail,
+    TResult Function()? registerLoading,
     TResult Function()? submitLoading,
-    TResult Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult Function(String? errorMessage)? resendVerificationCodeError,
+    TResult Function(String? authToken)? submitPhone,
+    TResult Function(String? errorMessage)? loginError,
     TResult Function()? goToLogin,
     TResult Function()? goToHome,
     required TResult orElse(),
   }) {
-    if (submitVerificationCodeFail != null) {
-      return submitVerificationCodeFail(errorMessage);
+    if (registerFail != null) {
+      return registerFail(errorMessage);
     }
     return orElse();
   }
@@ -1584,125 +601,96 @@ class _$SubmitVerificationCodeFailStateImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitialState value) initial,
-    required TResult Function(CaptchaState value) captcha,
-    required TResult Function(ResendCodeLoadingState value) resendCodeLoading,
-    required TResult Function(ResendVerificationCodeState value)
-        resendVerificationCode,
-    required TResult Function(SubmitVerificationCodeState value)
-        submitVerificationCode,
-    required TResult Function(SubmitVerificationCodeCompleteState value)
-        submitVerificationCodeComplete,
-    required TResult Function(SubmitVerificationCodeFailState value)
-        submitVerificationCodeFail,
-    required TResult Function(SubmitPhoneLoadingState value) submitPhoneLoading,
-    required TResult Function(SubmitLoadingState value) submitLoading,
-    required TResult Function(SubmitPhoneCompleteError value)
-        submitPhoneCompleteError,
-    required TResult Function(ResendVerificationCodeError value)
-        resendVerificationCodeError,
+    required TResult Function(RegisterCompleteState value) registerComplete,
+    required TResult Function(RegisterFailedState value) registerFail,
+    required TResult Function(RegisterLoadingState value) registerLoading,
+    required TResult Function(LoginLoadingState value) submitLoading,
+    required TResult Function(LoginCompleteState value) submitPhone,
+    required TResult Function(LoginErrorState value) loginError,
     required TResult Function(GoToLoginState value) goToLogin,
     required TResult Function(goToHomeState value) goToHome,
   }) {
-    return submitVerificationCodeFail(this);
+    return registerFail(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitialState value)? initial,
-    TResult? Function(CaptchaState value)? captcha,
-    TResult? Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult? Function(ResendVerificationCodeState value)?
-        resendVerificationCode,
-    TResult? Function(SubmitVerificationCodeState value)?
-        submitVerificationCode,
-    TResult? Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult? Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult? Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult? Function(SubmitLoadingState value)? submitLoading,
-    TResult? Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult? Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult? Function(RegisterCompleteState value)? registerComplete,
+    TResult? Function(RegisterFailedState value)? registerFail,
+    TResult? Function(RegisterLoadingState value)? registerLoading,
+    TResult? Function(LoginLoadingState value)? submitLoading,
+    TResult? Function(LoginCompleteState value)? submitPhone,
+    TResult? Function(LoginErrorState value)? loginError,
     TResult? Function(GoToLoginState value)? goToLogin,
     TResult? Function(goToHomeState value)? goToHome,
   }) {
-    return submitVerificationCodeFail?.call(this);
+    return registerFail?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialState value)? initial,
-    TResult Function(CaptchaState value)? captcha,
-    TResult Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult Function(ResendVerificationCodeState value)? resendVerificationCode,
-    TResult Function(SubmitVerificationCodeState value)? submitVerificationCode,
-    TResult Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult Function(SubmitLoadingState value)? submitLoading,
-    TResult Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult Function(RegisterCompleteState value)? registerComplete,
+    TResult Function(RegisterFailedState value)? registerFail,
+    TResult Function(RegisterLoadingState value)? registerLoading,
+    TResult Function(LoginLoadingState value)? submitLoading,
+    TResult Function(LoginCompleteState value)? submitPhone,
+    TResult Function(LoginErrorState value)? loginError,
     TResult Function(GoToLoginState value)? goToLogin,
     TResult Function(goToHomeState value)? goToHome,
     required TResult orElse(),
   }) {
-    if (submitVerificationCodeFail != null) {
-      return submitVerificationCodeFail(this);
+    if (registerFail != null) {
+      return registerFail(this);
     }
     return orElse();
   }
 }
 
-abstract class SubmitVerificationCodeFailState implements AuthState {
-  const factory SubmitVerificationCodeFailState({final String? errorMessage}) =
-      _$SubmitVerificationCodeFailStateImpl;
+abstract class RegisterFailedState implements AuthState {
+  const factory RegisterFailedState({final String? errorMessage}) =
+      _$RegisterFailedStateImpl;
 
   String? get errorMessage;
   @JsonKey(ignore: true)
-  _$$SubmitVerificationCodeFailStateImplCopyWith<
-          _$SubmitVerificationCodeFailStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$RegisterFailedStateImplCopyWith<_$RegisterFailedStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SubmitPhoneLoadingStateImplCopyWith<$Res> {
-  factory _$$SubmitPhoneLoadingStateImplCopyWith(
-          _$SubmitPhoneLoadingStateImpl value,
-          $Res Function(_$SubmitPhoneLoadingStateImpl) then) =
-      __$$SubmitPhoneLoadingStateImplCopyWithImpl<$Res>;
+abstract class _$$RegisterLoadingStateImplCopyWith<$Res> {
+  factory _$$RegisterLoadingStateImplCopyWith(_$RegisterLoadingStateImpl value,
+          $Res Function(_$RegisterLoadingStateImpl) then) =
+      __$$RegisterLoadingStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SubmitPhoneLoadingStateImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$SubmitPhoneLoadingStateImpl>
-    implements _$$SubmitPhoneLoadingStateImplCopyWith<$Res> {
-  __$$SubmitPhoneLoadingStateImplCopyWithImpl(
-      _$SubmitPhoneLoadingStateImpl _value,
-      $Res Function(_$SubmitPhoneLoadingStateImpl) _then)
+class __$$RegisterLoadingStateImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$RegisterLoadingStateImpl>
+    implements _$$RegisterLoadingStateImplCopyWith<$Res> {
+  __$$RegisterLoadingStateImplCopyWithImpl(_$RegisterLoadingStateImpl _value,
+      $Res Function(_$RegisterLoadingStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SubmitPhoneLoadingStateImpl implements SubmitPhoneLoadingState {
-  const _$SubmitPhoneLoadingStateImpl();
+class _$RegisterLoadingStateImpl implements RegisterLoadingState {
+  const _$RegisterLoadingStateImpl();
 
   @override
   String toString() {
-    return 'AuthState.submitPhoneLoading()';
+    return 'AuthState.registerLoading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SubmitPhoneLoadingStateImpl);
+            other is _$RegisterLoadingStateImpl);
   }
 
   @override
@@ -1712,62 +700,50 @@ class _$SubmitPhoneLoadingStateImpl implements SubmitPhoneLoadingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? requestId, String? errorMessage) initial,
-    required TResult Function(String? requestId, String? errorMessage) captcha,
-    required TResult Function() resendCodeLoading,
-    required TResult Function(String? requestId) resendVerificationCode,
-    required TResult Function(String? requestId) submitVerificationCode,
-    required TResult Function(String authToken) submitVerificationCodeComplete,
-    required TResult Function(String? errorMessage) submitVerificationCodeFail,
-    required TResult Function() submitPhoneLoading,
+    required TResult Function(String authToken) registerComplete,
+    required TResult Function(String? errorMessage) registerFail,
+    required TResult Function() registerLoading,
     required TResult Function() submitLoading,
-    required TResult Function(String? errorMessage) submitPhoneCompleteError,
-    required TResult Function(String? errorMessage) resendVerificationCodeError,
+    required TResult Function(String? authToken) submitPhone,
+    required TResult Function(String? errorMessage) loginError,
     required TResult Function() goToLogin,
     required TResult Function() goToHome,
   }) {
-    return submitPhoneLoading();
+    return registerLoading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? requestId, String? errorMessage)? initial,
-    TResult? Function(String? requestId, String? errorMessage)? captcha,
-    TResult? Function()? resendCodeLoading,
-    TResult? Function(String? requestId)? resendVerificationCode,
-    TResult? Function(String? requestId)? submitVerificationCode,
-    TResult? Function(String authToken)? submitVerificationCodeComplete,
-    TResult? Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult? Function()? submitPhoneLoading,
+    TResult? Function(String authToken)? registerComplete,
+    TResult? Function(String? errorMessage)? registerFail,
+    TResult? Function()? registerLoading,
     TResult? Function()? submitLoading,
-    TResult? Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult? Function(String? errorMessage)? resendVerificationCodeError,
+    TResult? Function(String? authToken)? submitPhone,
+    TResult? Function(String? errorMessage)? loginError,
     TResult? Function()? goToLogin,
     TResult? Function()? goToHome,
   }) {
-    return submitPhoneLoading?.call();
+    return registerLoading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? requestId, String? errorMessage)? initial,
-    TResult Function(String? requestId, String? errorMessage)? captcha,
-    TResult Function()? resendCodeLoading,
-    TResult Function(String? requestId)? resendVerificationCode,
-    TResult Function(String? requestId)? submitVerificationCode,
-    TResult Function(String authToken)? submitVerificationCodeComplete,
-    TResult Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult Function()? submitPhoneLoading,
+    TResult Function(String authToken)? registerComplete,
+    TResult Function(String? errorMessage)? registerFail,
+    TResult Function()? registerLoading,
     TResult Function()? submitLoading,
-    TResult Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult Function(String? errorMessage)? resendVerificationCodeError,
+    TResult Function(String? authToken)? submitPhone,
+    TResult Function(String? errorMessage)? loginError,
     TResult Function()? goToLogin,
     TResult Function()? goToHome,
     required TResult orElse(),
   }) {
-    if (submitPhoneLoading != null) {
-      return submitPhoneLoading();
+    if (registerLoading != null) {
+      return registerLoading();
     }
     return orElse();
   }
@@ -1776,105 +752,79 @@ class _$SubmitPhoneLoadingStateImpl implements SubmitPhoneLoadingState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitialState value) initial,
-    required TResult Function(CaptchaState value) captcha,
-    required TResult Function(ResendCodeLoadingState value) resendCodeLoading,
-    required TResult Function(ResendVerificationCodeState value)
-        resendVerificationCode,
-    required TResult Function(SubmitVerificationCodeState value)
-        submitVerificationCode,
-    required TResult Function(SubmitVerificationCodeCompleteState value)
-        submitVerificationCodeComplete,
-    required TResult Function(SubmitVerificationCodeFailState value)
-        submitVerificationCodeFail,
-    required TResult Function(SubmitPhoneLoadingState value) submitPhoneLoading,
-    required TResult Function(SubmitLoadingState value) submitLoading,
-    required TResult Function(SubmitPhoneCompleteError value)
-        submitPhoneCompleteError,
-    required TResult Function(ResendVerificationCodeError value)
-        resendVerificationCodeError,
+    required TResult Function(RegisterCompleteState value) registerComplete,
+    required TResult Function(RegisterFailedState value) registerFail,
+    required TResult Function(RegisterLoadingState value) registerLoading,
+    required TResult Function(LoginLoadingState value) submitLoading,
+    required TResult Function(LoginCompleteState value) submitPhone,
+    required TResult Function(LoginErrorState value) loginError,
     required TResult Function(GoToLoginState value) goToLogin,
     required TResult Function(goToHomeState value) goToHome,
   }) {
-    return submitPhoneLoading(this);
+    return registerLoading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitialState value)? initial,
-    TResult? Function(CaptchaState value)? captcha,
-    TResult? Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult? Function(ResendVerificationCodeState value)?
-        resendVerificationCode,
-    TResult? Function(SubmitVerificationCodeState value)?
-        submitVerificationCode,
-    TResult? Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult? Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult? Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult? Function(SubmitLoadingState value)? submitLoading,
-    TResult? Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult? Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult? Function(RegisterCompleteState value)? registerComplete,
+    TResult? Function(RegisterFailedState value)? registerFail,
+    TResult? Function(RegisterLoadingState value)? registerLoading,
+    TResult? Function(LoginLoadingState value)? submitLoading,
+    TResult? Function(LoginCompleteState value)? submitPhone,
+    TResult? Function(LoginErrorState value)? loginError,
     TResult? Function(GoToLoginState value)? goToLogin,
     TResult? Function(goToHomeState value)? goToHome,
   }) {
-    return submitPhoneLoading?.call(this);
+    return registerLoading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialState value)? initial,
-    TResult Function(CaptchaState value)? captcha,
-    TResult Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult Function(ResendVerificationCodeState value)? resendVerificationCode,
-    TResult Function(SubmitVerificationCodeState value)? submitVerificationCode,
-    TResult Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult Function(SubmitLoadingState value)? submitLoading,
-    TResult Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult Function(RegisterCompleteState value)? registerComplete,
+    TResult Function(RegisterFailedState value)? registerFail,
+    TResult Function(RegisterLoadingState value)? registerLoading,
+    TResult Function(LoginLoadingState value)? submitLoading,
+    TResult Function(LoginCompleteState value)? submitPhone,
+    TResult Function(LoginErrorState value)? loginError,
     TResult Function(GoToLoginState value)? goToLogin,
     TResult Function(goToHomeState value)? goToHome,
     required TResult orElse(),
   }) {
-    if (submitPhoneLoading != null) {
-      return submitPhoneLoading(this);
+    if (registerLoading != null) {
+      return registerLoading(this);
     }
     return orElse();
   }
 }
 
-abstract class SubmitPhoneLoadingState implements AuthState {
-  const factory SubmitPhoneLoadingState() = _$SubmitPhoneLoadingStateImpl;
+abstract class RegisterLoadingState implements AuthState {
+  const factory RegisterLoadingState() = _$RegisterLoadingStateImpl;
 }
 
 /// @nodoc
-abstract class _$$SubmitLoadingStateImplCopyWith<$Res> {
-  factory _$$SubmitLoadingStateImplCopyWith(_$SubmitLoadingStateImpl value,
-          $Res Function(_$SubmitLoadingStateImpl) then) =
-      __$$SubmitLoadingStateImplCopyWithImpl<$Res>;
+abstract class _$$LoginLoadingStateImplCopyWith<$Res> {
+  factory _$$LoginLoadingStateImplCopyWith(_$LoginLoadingStateImpl value,
+          $Res Function(_$LoginLoadingStateImpl) then) =
+      __$$LoginLoadingStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SubmitLoadingStateImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$SubmitLoadingStateImpl>
-    implements _$$SubmitLoadingStateImplCopyWith<$Res> {
-  __$$SubmitLoadingStateImplCopyWithImpl(_$SubmitLoadingStateImpl _value,
-      $Res Function(_$SubmitLoadingStateImpl) _then)
+class __$$LoginLoadingStateImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$LoginLoadingStateImpl>
+    implements _$$LoginLoadingStateImplCopyWith<$Res> {
+  __$$LoginLoadingStateImplCopyWithImpl(_$LoginLoadingStateImpl _value,
+      $Res Function(_$LoginLoadingStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SubmitLoadingStateImpl implements SubmitLoadingState {
-  const _$SubmitLoadingStateImpl();
+class _$LoginLoadingStateImpl implements LoginLoadingState {
+  const _$LoginLoadingStateImpl();
 
   @override
   String toString() {
@@ -1884,7 +834,7 @@ class _$SubmitLoadingStateImpl implements SubmitLoadingState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SubmitLoadingStateImpl);
+        (other.runtimeType == runtimeType && other is _$LoginLoadingStateImpl);
   }
 
   @override
@@ -1894,16 +844,12 @@ class _$SubmitLoadingStateImpl implements SubmitLoadingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? requestId, String? errorMessage) initial,
-    required TResult Function(String? requestId, String? errorMessage) captcha,
-    required TResult Function() resendCodeLoading,
-    required TResult Function(String? requestId) resendVerificationCode,
-    required TResult Function(String? requestId) submitVerificationCode,
-    required TResult Function(String authToken) submitVerificationCodeComplete,
-    required TResult Function(String? errorMessage) submitVerificationCodeFail,
-    required TResult Function() submitPhoneLoading,
+    required TResult Function(String authToken) registerComplete,
+    required TResult Function(String? errorMessage) registerFail,
+    required TResult Function() registerLoading,
     required TResult Function() submitLoading,
-    required TResult Function(String? errorMessage) submitPhoneCompleteError,
-    required TResult Function(String? errorMessage) resendVerificationCodeError,
+    required TResult Function(String? authToken) submitPhone,
+    required TResult Function(String? errorMessage) loginError,
     required TResult Function() goToLogin,
     required TResult Function() goToHome,
   }) {
@@ -1914,16 +860,12 @@ class _$SubmitLoadingStateImpl implements SubmitLoadingState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? requestId, String? errorMessage)? initial,
-    TResult? Function(String? requestId, String? errorMessage)? captcha,
-    TResult? Function()? resendCodeLoading,
-    TResult? Function(String? requestId)? resendVerificationCode,
-    TResult? Function(String? requestId)? submitVerificationCode,
-    TResult? Function(String authToken)? submitVerificationCodeComplete,
-    TResult? Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult? Function()? submitPhoneLoading,
+    TResult? Function(String authToken)? registerComplete,
+    TResult? Function(String? errorMessage)? registerFail,
+    TResult? Function()? registerLoading,
     TResult? Function()? submitLoading,
-    TResult? Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult? Function(String? errorMessage)? resendVerificationCodeError,
+    TResult? Function(String? authToken)? submitPhone,
+    TResult? Function(String? errorMessage)? loginError,
     TResult? Function()? goToLogin,
     TResult? Function()? goToHome,
   }) {
@@ -1934,16 +876,12 @@ class _$SubmitLoadingStateImpl implements SubmitLoadingState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? requestId, String? errorMessage)? initial,
-    TResult Function(String? requestId, String? errorMessage)? captcha,
-    TResult Function()? resendCodeLoading,
-    TResult Function(String? requestId)? resendVerificationCode,
-    TResult Function(String? requestId)? submitVerificationCode,
-    TResult Function(String authToken)? submitVerificationCodeComplete,
-    TResult Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult Function()? submitPhoneLoading,
+    TResult Function(String authToken)? registerComplete,
+    TResult Function(String? errorMessage)? registerFail,
+    TResult Function()? registerLoading,
     TResult Function()? submitLoading,
-    TResult Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult Function(String? errorMessage)? resendVerificationCodeError,
+    TResult Function(String? authToken)? submitPhone,
+    TResult Function(String? errorMessage)? loginError,
     TResult Function()? goToLogin,
     TResult Function()? goToHome,
     required TResult orElse(),
@@ -1958,22 +896,12 @@ class _$SubmitLoadingStateImpl implements SubmitLoadingState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitialState value) initial,
-    required TResult Function(CaptchaState value) captcha,
-    required TResult Function(ResendCodeLoadingState value) resendCodeLoading,
-    required TResult Function(ResendVerificationCodeState value)
-        resendVerificationCode,
-    required TResult Function(SubmitVerificationCodeState value)
-        submitVerificationCode,
-    required TResult Function(SubmitVerificationCodeCompleteState value)
-        submitVerificationCodeComplete,
-    required TResult Function(SubmitVerificationCodeFailState value)
-        submitVerificationCodeFail,
-    required TResult Function(SubmitPhoneLoadingState value) submitPhoneLoading,
-    required TResult Function(SubmitLoadingState value) submitLoading,
-    required TResult Function(SubmitPhoneCompleteError value)
-        submitPhoneCompleteError,
-    required TResult Function(ResendVerificationCodeError value)
-        resendVerificationCodeError,
+    required TResult Function(RegisterCompleteState value) registerComplete,
+    required TResult Function(RegisterFailedState value) registerFail,
+    required TResult Function(RegisterLoadingState value) registerLoading,
+    required TResult Function(LoginLoadingState value) submitLoading,
+    required TResult Function(LoginCompleteState value) submitPhone,
+    required TResult Function(LoginErrorState value) loginError,
     required TResult Function(GoToLoginState value) goToLogin,
     required TResult Function(goToHomeState value) goToHome,
   }) {
@@ -1984,21 +912,12 @@ class _$SubmitLoadingStateImpl implements SubmitLoadingState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitialState value)? initial,
-    TResult? Function(CaptchaState value)? captcha,
-    TResult? Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult? Function(ResendVerificationCodeState value)?
-        resendVerificationCode,
-    TResult? Function(SubmitVerificationCodeState value)?
-        submitVerificationCode,
-    TResult? Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult? Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult? Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult? Function(SubmitLoadingState value)? submitLoading,
-    TResult? Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult? Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult? Function(RegisterCompleteState value)? registerComplete,
+    TResult? Function(RegisterFailedState value)? registerFail,
+    TResult? Function(RegisterLoadingState value)? registerLoading,
+    TResult? Function(LoginLoadingState value)? submitLoading,
+    TResult? Function(LoginCompleteState value)? submitPhone,
+    TResult? Function(LoginErrorState value)? loginError,
     TResult? Function(GoToLoginState value)? goToLogin,
     TResult? Function(goToHomeState value)? goToHome,
   }) {
@@ -2009,19 +928,12 @@ class _$SubmitLoadingStateImpl implements SubmitLoadingState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialState value)? initial,
-    TResult Function(CaptchaState value)? captcha,
-    TResult Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult Function(ResendVerificationCodeState value)? resendVerificationCode,
-    TResult Function(SubmitVerificationCodeState value)? submitVerificationCode,
-    TResult Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult Function(SubmitLoadingState value)? submitLoading,
-    TResult Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult Function(RegisterCompleteState value)? registerComplete,
+    TResult Function(RegisterFailedState value)? registerFail,
+    TResult Function(RegisterLoadingState value)? registerLoading,
+    TResult Function(LoginLoadingState value)? submitLoading,
+    TResult Function(LoginCompleteState value)? submitPhone,
+    TResult Function(LoginErrorState value)? loginError,
     TResult Function(GoToLoginState value)? goToLogin,
     TResult Function(goToHomeState value)? goToHome,
     required TResult orElse(),
@@ -2033,27 +945,203 @@ class _$SubmitLoadingStateImpl implements SubmitLoadingState {
   }
 }
 
-abstract class SubmitLoadingState implements AuthState {
-  const factory SubmitLoadingState() = _$SubmitLoadingStateImpl;
+abstract class LoginLoadingState implements AuthState {
+  const factory LoginLoadingState() = _$LoginLoadingStateImpl;
 }
 
 /// @nodoc
-abstract class _$$SubmitPhoneCompleteErrorImplCopyWith<$Res> {
-  factory _$$SubmitPhoneCompleteErrorImplCopyWith(
-          _$SubmitPhoneCompleteErrorImpl value,
-          $Res Function(_$SubmitPhoneCompleteErrorImpl) then) =
-      __$$SubmitPhoneCompleteErrorImplCopyWithImpl<$Res>;
+abstract class _$$LoginCompleteStateImplCopyWith<$Res> {
+  factory _$$LoginCompleteStateImplCopyWith(_$LoginCompleteStateImpl value,
+          $Res Function(_$LoginCompleteStateImpl) then) =
+      __$$LoginCompleteStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? authToken});
+}
+
+/// @nodoc
+class __$$LoginCompleteStateImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$LoginCompleteStateImpl>
+    implements _$$LoginCompleteStateImplCopyWith<$Res> {
+  __$$LoginCompleteStateImplCopyWithImpl(_$LoginCompleteStateImpl _value,
+      $Res Function(_$LoginCompleteStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? authToken = freezed,
+  }) {
+    return _then(_$LoginCompleteStateImpl(
+      authToken: freezed == authToken
+          ? _value.authToken
+          : authToken // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoginCompleteStateImpl implements LoginCompleteState {
+  const _$LoginCompleteStateImpl({this.authToken});
+
+  @override
+  final String? authToken;
+
+  @override
+  String toString() {
+    return 'AuthState.submitPhone(authToken: $authToken)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoginCompleteStateImpl &&
+            (identical(other.authToken, authToken) ||
+                other.authToken == authToken));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, authToken);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoginCompleteStateImplCopyWith<_$LoginCompleteStateImpl> get copyWith =>
+      __$$LoginCompleteStateImplCopyWithImpl<_$LoginCompleteStateImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? requestId, String? errorMessage) initial,
+    required TResult Function(String authToken) registerComplete,
+    required TResult Function(String? errorMessage) registerFail,
+    required TResult Function() registerLoading,
+    required TResult Function() submitLoading,
+    required TResult Function(String? authToken) submitPhone,
+    required TResult Function(String? errorMessage) loginError,
+    required TResult Function() goToLogin,
+    required TResult Function() goToHome,
+  }) {
+    return submitPhone(authToken);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? requestId, String? errorMessage)? initial,
+    TResult? Function(String authToken)? registerComplete,
+    TResult? Function(String? errorMessage)? registerFail,
+    TResult? Function()? registerLoading,
+    TResult? Function()? submitLoading,
+    TResult? Function(String? authToken)? submitPhone,
+    TResult? Function(String? errorMessage)? loginError,
+    TResult? Function()? goToLogin,
+    TResult? Function()? goToHome,
+  }) {
+    return submitPhone?.call(authToken);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? requestId, String? errorMessage)? initial,
+    TResult Function(String authToken)? registerComplete,
+    TResult Function(String? errorMessage)? registerFail,
+    TResult Function()? registerLoading,
+    TResult Function()? submitLoading,
+    TResult Function(String? authToken)? submitPhone,
+    TResult Function(String? errorMessage)? loginError,
+    TResult Function()? goToLogin,
+    TResult Function()? goToHome,
+    required TResult orElse(),
+  }) {
+    if (submitPhone != null) {
+      return submitPhone(authToken);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialState value) initial,
+    required TResult Function(RegisterCompleteState value) registerComplete,
+    required TResult Function(RegisterFailedState value) registerFail,
+    required TResult Function(RegisterLoadingState value) registerLoading,
+    required TResult Function(LoginLoadingState value) submitLoading,
+    required TResult Function(LoginCompleteState value) submitPhone,
+    required TResult Function(LoginErrorState value) loginError,
+    required TResult Function(GoToLoginState value) goToLogin,
+    required TResult Function(goToHomeState value) goToHome,
+  }) {
+    return submitPhone(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InitialState value)? initial,
+    TResult? Function(RegisterCompleteState value)? registerComplete,
+    TResult? Function(RegisterFailedState value)? registerFail,
+    TResult? Function(RegisterLoadingState value)? registerLoading,
+    TResult? Function(LoginLoadingState value)? submitLoading,
+    TResult? Function(LoginCompleteState value)? submitPhone,
+    TResult? Function(LoginErrorState value)? loginError,
+    TResult? Function(GoToLoginState value)? goToLogin,
+    TResult? Function(goToHomeState value)? goToHome,
+  }) {
+    return submitPhone?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialState value)? initial,
+    TResult Function(RegisterCompleteState value)? registerComplete,
+    TResult Function(RegisterFailedState value)? registerFail,
+    TResult Function(RegisterLoadingState value)? registerLoading,
+    TResult Function(LoginLoadingState value)? submitLoading,
+    TResult Function(LoginCompleteState value)? submitPhone,
+    TResult Function(LoginErrorState value)? loginError,
+    TResult Function(GoToLoginState value)? goToLogin,
+    TResult Function(goToHomeState value)? goToHome,
+    required TResult orElse(),
+  }) {
+    if (submitPhone != null) {
+      return submitPhone(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoginCompleteState implements AuthState {
+  const factory LoginCompleteState({final String? authToken}) =
+      _$LoginCompleteStateImpl;
+
+  String? get authToken;
+  @JsonKey(ignore: true)
+  _$$LoginCompleteStateImplCopyWith<_$LoginCompleteStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoginErrorStateImplCopyWith<$Res> {
+  factory _$$LoginErrorStateImplCopyWith(_$LoginErrorStateImpl value,
+          $Res Function(_$LoginErrorStateImpl) then) =
+      __$$LoginErrorStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String? errorMessage});
 }
 
 /// @nodoc
-class __$$SubmitPhoneCompleteErrorImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$SubmitPhoneCompleteErrorImpl>
-    implements _$$SubmitPhoneCompleteErrorImplCopyWith<$Res> {
-  __$$SubmitPhoneCompleteErrorImplCopyWithImpl(
-      _$SubmitPhoneCompleteErrorImpl _value,
-      $Res Function(_$SubmitPhoneCompleteErrorImpl) _then)
+class __$$LoginErrorStateImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$LoginErrorStateImpl>
+    implements _$$LoginErrorStateImplCopyWith<$Res> {
+  __$$LoginErrorStateImplCopyWithImpl(
+      _$LoginErrorStateImpl _value, $Res Function(_$LoginErrorStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2061,7 +1149,7 @@ class __$$SubmitPhoneCompleteErrorImplCopyWithImpl<$Res>
   $Res call({
     Object? errorMessage = freezed,
   }) {
-    return _then(_$SubmitPhoneCompleteErrorImpl(
+    return _then(_$LoginErrorStateImpl(
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -2072,22 +1160,22 @@ class __$$SubmitPhoneCompleteErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SubmitPhoneCompleteErrorImpl implements SubmitPhoneCompleteError {
-  const _$SubmitPhoneCompleteErrorImpl({this.errorMessage});
+class _$LoginErrorStateImpl implements LoginErrorState {
+  const _$LoginErrorStateImpl({this.errorMessage});
 
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'AuthState.submitPhoneCompleteError(errorMessage: $errorMessage)';
+    return 'AuthState.loginError(errorMessage: $errorMessage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SubmitPhoneCompleteErrorImpl &&
+            other is _$LoginErrorStateImpl &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
@@ -2098,70 +1186,58 @@ class _$SubmitPhoneCompleteErrorImpl implements SubmitPhoneCompleteError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SubmitPhoneCompleteErrorImplCopyWith<_$SubmitPhoneCompleteErrorImpl>
-      get copyWith => __$$SubmitPhoneCompleteErrorImplCopyWithImpl<
-          _$SubmitPhoneCompleteErrorImpl>(this, _$identity);
+  _$$LoginErrorStateImplCopyWith<_$LoginErrorStateImpl> get copyWith =>
+      __$$LoginErrorStateImplCopyWithImpl<_$LoginErrorStateImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? requestId, String? errorMessage) initial,
-    required TResult Function(String? requestId, String? errorMessage) captcha,
-    required TResult Function() resendCodeLoading,
-    required TResult Function(String? requestId) resendVerificationCode,
-    required TResult Function(String? requestId) submitVerificationCode,
-    required TResult Function(String authToken) submitVerificationCodeComplete,
-    required TResult Function(String? errorMessage) submitVerificationCodeFail,
-    required TResult Function() submitPhoneLoading,
+    required TResult Function(String authToken) registerComplete,
+    required TResult Function(String? errorMessage) registerFail,
+    required TResult Function() registerLoading,
     required TResult Function() submitLoading,
-    required TResult Function(String? errorMessage) submitPhoneCompleteError,
-    required TResult Function(String? errorMessage) resendVerificationCodeError,
+    required TResult Function(String? authToken) submitPhone,
+    required TResult Function(String? errorMessage) loginError,
     required TResult Function() goToLogin,
     required TResult Function() goToHome,
   }) {
-    return submitPhoneCompleteError(errorMessage);
+    return loginError(errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? requestId, String? errorMessage)? initial,
-    TResult? Function(String? requestId, String? errorMessage)? captcha,
-    TResult? Function()? resendCodeLoading,
-    TResult? Function(String? requestId)? resendVerificationCode,
-    TResult? Function(String? requestId)? submitVerificationCode,
-    TResult? Function(String authToken)? submitVerificationCodeComplete,
-    TResult? Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult? Function()? submitPhoneLoading,
+    TResult? Function(String authToken)? registerComplete,
+    TResult? Function(String? errorMessage)? registerFail,
+    TResult? Function()? registerLoading,
     TResult? Function()? submitLoading,
-    TResult? Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult? Function(String? errorMessage)? resendVerificationCodeError,
+    TResult? Function(String? authToken)? submitPhone,
+    TResult? Function(String? errorMessage)? loginError,
     TResult? Function()? goToLogin,
     TResult? Function()? goToHome,
   }) {
-    return submitPhoneCompleteError?.call(errorMessage);
+    return loginError?.call(errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? requestId, String? errorMessage)? initial,
-    TResult Function(String? requestId, String? errorMessage)? captcha,
-    TResult Function()? resendCodeLoading,
-    TResult Function(String? requestId)? resendVerificationCode,
-    TResult Function(String? requestId)? submitVerificationCode,
-    TResult Function(String authToken)? submitVerificationCodeComplete,
-    TResult Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult Function()? submitPhoneLoading,
+    TResult Function(String authToken)? registerComplete,
+    TResult Function(String? errorMessage)? registerFail,
+    TResult Function()? registerLoading,
     TResult Function()? submitLoading,
-    TResult Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult Function(String? errorMessage)? resendVerificationCodeError,
+    TResult Function(String? authToken)? submitPhone,
+    TResult Function(String? errorMessage)? loginError,
     TResult Function()? goToLogin,
     TResult Function()? goToHome,
     required TResult orElse(),
   }) {
-    if (submitPhoneCompleteError != null) {
-      return submitPhoneCompleteError(errorMessage);
+    if (loginError != null) {
+      return loginError(errorMessage);
     }
     return orElse();
   }
@@ -2170,307 +1246,63 @@ class _$SubmitPhoneCompleteErrorImpl implements SubmitPhoneCompleteError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitialState value) initial,
-    required TResult Function(CaptchaState value) captcha,
-    required TResult Function(ResendCodeLoadingState value) resendCodeLoading,
-    required TResult Function(ResendVerificationCodeState value)
-        resendVerificationCode,
-    required TResult Function(SubmitVerificationCodeState value)
-        submitVerificationCode,
-    required TResult Function(SubmitVerificationCodeCompleteState value)
-        submitVerificationCodeComplete,
-    required TResult Function(SubmitVerificationCodeFailState value)
-        submitVerificationCodeFail,
-    required TResult Function(SubmitPhoneLoadingState value) submitPhoneLoading,
-    required TResult Function(SubmitLoadingState value) submitLoading,
-    required TResult Function(SubmitPhoneCompleteError value)
-        submitPhoneCompleteError,
-    required TResult Function(ResendVerificationCodeError value)
-        resendVerificationCodeError,
+    required TResult Function(RegisterCompleteState value) registerComplete,
+    required TResult Function(RegisterFailedState value) registerFail,
+    required TResult Function(RegisterLoadingState value) registerLoading,
+    required TResult Function(LoginLoadingState value) submitLoading,
+    required TResult Function(LoginCompleteState value) submitPhone,
+    required TResult Function(LoginErrorState value) loginError,
     required TResult Function(GoToLoginState value) goToLogin,
     required TResult Function(goToHomeState value) goToHome,
   }) {
-    return submitPhoneCompleteError(this);
+    return loginError(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitialState value)? initial,
-    TResult? Function(CaptchaState value)? captcha,
-    TResult? Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult? Function(ResendVerificationCodeState value)?
-        resendVerificationCode,
-    TResult? Function(SubmitVerificationCodeState value)?
-        submitVerificationCode,
-    TResult? Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult? Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult? Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult? Function(SubmitLoadingState value)? submitLoading,
-    TResult? Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult? Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult? Function(RegisterCompleteState value)? registerComplete,
+    TResult? Function(RegisterFailedState value)? registerFail,
+    TResult? Function(RegisterLoadingState value)? registerLoading,
+    TResult? Function(LoginLoadingState value)? submitLoading,
+    TResult? Function(LoginCompleteState value)? submitPhone,
+    TResult? Function(LoginErrorState value)? loginError,
     TResult? Function(GoToLoginState value)? goToLogin,
     TResult? Function(goToHomeState value)? goToHome,
   }) {
-    return submitPhoneCompleteError?.call(this);
+    return loginError?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialState value)? initial,
-    TResult Function(CaptchaState value)? captcha,
-    TResult Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult Function(ResendVerificationCodeState value)? resendVerificationCode,
-    TResult Function(SubmitVerificationCodeState value)? submitVerificationCode,
-    TResult Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult Function(SubmitLoadingState value)? submitLoading,
-    TResult Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult Function(RegisterCompleteState value)? registerComplete,
+    TResult Function(RegisterFailedState value)? registerFail,
+    TResult Function(RegisterLoadingState value)? registerLoading,
+    TResult Function(LoginLoadingState value)? submitLoading,
+    TResult Function(LoginCompleteState value)? submitPhone,
+    TResult Function(LoginErrorState value)? loginError,
     TResult Function(GoToLoginState value)? goToLogin,
     TResult Function(goToHomeState value)? goToHome,
     required TResult orElse(),
   }) {
-    if (submitPhoneCompleteError != null) {
-      return submitPhoneCompleteError(this);
+    if (loginError != null) {
+      return loginError(this);
     }
     return orElse();
   }
 }
 
-abstract class SubmitPhoneCompleteError implements AuthState {
-  const factory SubmitPhoneCompleteError({final String? errorMessage}) =
-      _$SubmitPhoneCompleteErrorImpl;
+abstract class LoginErrorState implements AuthState {
+  const factory LoginErrorState({final String? errorMessage}) =
+      _$LoginErrorStateImpl;
 
   String? get errorMessage;
   @JsonKey(ignore: true)
-  _$$SubmitPhoneCompleteErrorImplCopyWith<_$SubmitPhoneCompleteErrorImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ResendVerificationCodeErrorImplCopyWith<$Res> {
-  factory _$$ResendVerificationCodeErrorImplCopyWith(
-          _$ResendVerificationCodeErrorImpl value,
-          $Res Function(_$ResendVerificationCodeErrorImpl) then) =
-      __$$ResendVerificationCodeErrorImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String? errorMessage});
-}
-
-/// @nodoc
-class __$$ResendVerificationCodeErrorImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$ResendVerificationCodeErrorImpl>
-    implements _$$ResendVerificationCodeErrorImplCopyWith<$Res> {
-  __$$ResendVerificationCodeErrorImplCopyWithImpl(
-      _$ResendVerificationCodeErrorImpl _value,
-      $Res Function(_$ResendVerificationCodeErrorImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? errorMessage = freezed,
-  }) {
-    return _then(_$ResendVerificationCodeErrorImpl(
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ResendVerificationCodeErrorImpl implements ResendVerificationCodeError {
-  const _$ResendVerificationCodeErrorImpl({this.errorMessage});
-
-  @override
-  final String? errorMessage;
-
-  @override
-  String toString() {
-    return 'AuthState.resendVerificationCodeError(errorMessage: $errorMessage)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ResendVerificationCodeErrorImpl &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, errorMessage);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ResendVerificationCodeErrorImplCopyWith<_$ResendVerificationCodeErrorImpl>
-      get copyWith => __$$ResendVerificationCodeErrorImplCopyWithImpl<
-          _$ResendVerificationCodeErrorImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? requestId, String? errorMessage) initial,
-    required TResult Function(String? requestId, String? errorMessage) captcha,
-    required TResult Function() resendCodeLoading,
-    required TResult Function(String? requestId) resendVerificationCode,
-    required TResult Function(String? requestId) submitVerificationCode,
-    required TResult Function(String authToken) submitVerificationCodeComplete,
-    required TResult Function(String? errorMessage) submitVerificationCodeFail,
-    required TResult Function() submitPhoneLoading,
-    required TResult Function() submitLoading,
-    required TResult Function(String? errorMessage) submitPhoneCompleteError,
-    required TResult Function(String? errorMessage) resendVerificationCodeError,
-    required TResult Function() goToLogin,
-    required TResult Function() goToHome,
-  }) {
-    return resendVerificationCodeError(errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? requestId, String? errorMessage)? initial,
-    TResult? Function(String? requestId, String? errorMessage)? captcha,
-    TResult? Function()? resendCodeLoading,
-    TResult? Function(String? requestId)? resendVerificationCode,
-    TResult? Function(String? requestId)? submitVerificationCode,
-    TResult? Function(String authToken)? submitVerificationCodeComplete,
-    TResult? Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult? Function()? submitPhoneLoading,
-    TResult? Function()? submitLoading,
-    TResult? Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult? Function(String? errorMessage)? resendVerificationCodeError,
-    TResult? Function()? goToLogin,
-    TResult? Function()? goToHome,
-  }) {
-    return resendVerificationCodeError?.call(errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? requestId, String? errorMessage)? initial,
-    TResult Function(String? requestId, String? errorMessage)? captcha,
-    TResult Function()? resendCodeLoading,
-    TResult Function(String? requestId)? resendVerificationCode,
-    TResult Function(String? requestId)? submitVerificationCode,
-    TResult Function(String authToken)? submitVerificationCodeComplete,
-    TResult Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult Function()? submitPhoneLoading,
-    TResult Function()? submitLoading,
-    TResult Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult Function(String? errorMessage)? resendVerificationCodeError,
-    TResult Function()? goToLogin,
-    TResult Function()? goToHome,
-    required TResult orElse(),
-  }) {
-    if (resendVerificationCodeError != null) {
-      return resendVerificationCodeError(errorMessage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitialState value) initial,
-    required TResult Function(CaptchaState value) captcha,
-    required TResult Function(ResendCodeLoadingState value) resendCodeLoading,
-    required TResult Function(ResendVerificationCodeState value)
-        resendVerificationCode,
-    required TResult Function(SubmitVerificationCodeState value)
-        submitVerificationCode,
-    required TResult Function(SubmitVerificationCodeCompleteState value)
-        submitVerificationCodeComplete,
-    required TResult Function(SubmitVerificationCodeFailState value)
-        submitVerificationCodeFail,
-    required TResult Function(SubmitPhoneLoadingState value) submitPhoneLoading,
-    required TResult Function(SubmitLoadingState value) submitLoading,
-    required TResult Function(SubmitPhoneCompleteError value)
-        submitPhoneCompleteError,
-    required TResult Function(ResendVerificationCodeError value)
-        resendVerificationCodeError,
-    required TResult Function(GoToLoginState value) goToLogin,
-    required TResult Function(goToHomeState value) goToHome,
-  }) {
-    return resendVerificationCodeError(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitialState value)? initial,
-    TResult? Function(CaptchaState value)? captcha,
-    TResult? Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult? Function(ResendVerificationCodeState value)?
-        resendVerificationCode,
-    TResult? Function(SubmitVerificationCodeState value)?
-        submitVerificationCode,
-    TResult? Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult? Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult? Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult? Function(SubmitLoadingState value)? submitLoading,
-    TResult? Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult? Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
-    TResult? Function(GoToLoginState value)? goToLogin,
-    TResult? Function(goToHomeState value)? goToHome,
-  }) {
-    return resendVerificationCodeError?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialState value)? initial,
-    TResult Function(CaptchaState value)? captcha,
-    TResult Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult Function(ResendVerificationCodeState value)? resendVerificationCode,
-    TResult Function(SubmitVerificationCodeState value)? submitVerificationCode,
-    TResult Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult Function(SubmitLoadingState value)? submitLoading,
-    TResult Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
-    TResult Function(GoToLoginState value)? goToLogin,
-    TResult Function(goToHomeState value)? goToHome,
-    required TResult orElse(),
-  }) {
-    if (resendVerificationCodeError != null) {
-      return resendVerificationCodeError(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ResendVerificationCodeError implements AuthState {
-  const factory ResendVerificationCodeError({final String? errorMessage}) =
-      _$ResendVerificationCodeErrorImpl;
-
-  String? get errorMessage;
-  @JsonKey(ignore: true)
-  _$$ResendVerificationCodeErrorImplCopyWith<_$ResendVerificationCodeErrorImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$LoginErrorStateImplCopyWith<_$LoginErrorStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2512,16 +1344,12 @@ class _$GoToLoginStateImpl implements GoToLoginState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? requestId, String? errorMessage) initial,
-    required TResult Function(String? requestId, String? errorMessage) captcha,
-    required TResult Function() resendCodeLoading,
-    required TResult Function(String? requestId) resendVerificationCode,
-    required TResult Function(String? requestId) submitVerificationCode,
-    required TResult Function(String authToken) submitVerificationCodeComplete,
-    required TResult Function(String? errorMessage) submitVerificationCodeFail,
-    required TResult Function() submitPhoneLoading,
+    required TResult Function(String authToken) registerComplete,
+    required TResult Function(String? errorMessage) registerFail,
+    required TResult Function() registerLoading,
     required TResult Function() submitLoading,
-    required TResult Function(String? errorMessage) submitPhoneCompleteError,
-    required TResult Function(String? errorMessage) resendVerificationCodeError,
+    required TResult Function(String? authToken) submitPhone,
+    required TResult Function(String? errorMessage) loginError,
     required TResult Function() goToLogin,
     required TResult Function() goToHome,
   }) {
@@ -2532,16 +1360,12 @@ class _$GoToLoginStateImpl implements GoToLoginState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? requestId, String? errorMessage)? initial,
-    TResult? Function(String? requestId, String? errorMessage)? captcha,
-    TResult? Function()? resendCodeLoading,
-    TResult? Function(String? requestId)? resendVerificationCode,
-    TResult? Function(String? requestId)? submitVerificationCode,
-    TResult? Function(String authToken)? submitVerificationCodeComplete,
-    TResult? Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult? Function()? submitPhoneLoading,
+    TResult? Function(String authToken)? registerComplete,
+    TResult? Function(String? errorMessage)? registerFail,
+    TResult? Function()? registerLoading,
     TResult? Function()? submitLoading,
-    TResult? Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult? Function(String? errorMessage)? resendVerificationCodeError,
+    TResult? Function(String? authToken)? submitPhone,
+    TResult? Function(String? errorMessage)? loginError,
     TResult? Function()? goToLogin,
     TResult? Function()? goToHome,
   }) {
@@ -2552,16 +1376,12 @@ class _$GoToLoginStateImpl implements GoToLoginState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? requestId, String? errorMessage)? initial,
-    TResult Function(String? requestId, String? errorMessage)? captcha,
-    TResult Function()? resendCodeLoading,
-    TResult Function(String? requestId)? resendVerificationCode,
-    TResult Function(String? requestId)? submitVerificationCode,
-    TResult Function(String authToken)? submitVerificationCodeComplete,
-    TResult Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult Function()? submitPhoneLoading,
+    TResult Function(String authToken)? registerComplete,
+    TResult Function(String? errorMessage)? registerFail,
+    TResult Function()? registerLoading,
     TResult Function()? submitLoading,
-    TResult Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult Function(String? errorMessage)? resendVerificationCodeError,
+    TResult Function(String? authToken)? submitPhone,
+    TResult Function(String? errorMessage)? loginError,
     TResult Function()? goToLogin,
     TResult Function()? goToHome,
     required TResult orElse(),
@@ -2576,22 +1396,12 @@ class _$GoToLoginStateImpl implements GoToLoginState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitialState value) initial,
-    required TResult Function(CaptchaState value) captcha,
-    required TResult Function(ResendCodeLoadingState value) resendCodeLoading,
-    required TResult Function(ResendVerificationCodeState value)
-        resendVerificationCode,
-    required TResult Function(SubmitVerificationCodeState value)
-        submitVerificationCode,
-    required TResult Function(SubmitVerificationCodeCompleteState value)
-        submitVerificationCodeComplete,
-    required TResult Function(SubmitVerificationCodeFailState value)
-        submitVerificationCodeFail,
-    required TResult Function(SubmitPhoneLoadingState value) submitPhoneLoading,
-    required TResult Function(SubmitLoadingState value) submitLoading,
-    required TResult Function(SubmitPhoneCompleteError value)
-        submitPhoneCompleteError,
-    required TResult Function(ResendVerificationCodeError value)
-        resendVerificationCodeError,
+    required TResult Function(RegisterCompleteState value) registerComplete,
+    required TResult Function(RegisterFailedState value) registerFail,
+    required TResult Function(RegisterLoadingState value) registerLoading,
+    required TResult Function(LoginLoadingState value) submitLoading,
+    required TResult Function(LoginCompleteState value) submitPhone,
+    required TResult Function(LoginErrorState value) loginError,
     required TResult Function(GoToLoginState value) goToLogin,
     required TResult Function(goToHomeState value) goToHome,
   }) {
@@ -2602,21 +1412,12 @@ class _$GoToLoginStateImpl implements GoToLoginState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitialState value)? initial,
-    TResult? Function(CaptchaState value)? captcha,
-    TResult? Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult? Function(ResendVerificationCodeState value)?
-        resendVerificationCode,
-    TResult? Function(SubmitVerificationCodeState value)?
-        submitVerificationCode,
-    TResult? Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult? Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult? Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult? Function(SubmitLoadingState value)? submitLoading,
-    TResult? Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult? Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult? Function(RegisterCompleteState value)? registerComplete,
+    TResult? Function(RegisterFailedState value)? registerFail,
+    TResult? Function(RegisterLoadingState value)? registerLoading,
+    TResult? Function(LoginLoadingState value)? submitLoading,
+    TResult? Function(LoginCompleteState value)? submitPhone,
+    TResult? Function(LoginErrorState value)? loginError,
     TResult? Function(GoToLoginState value)? goToLogin,
     TResult? Function(goToHomeState value)? goToHome,
   }) {
@@ -2627,19 +1428,12 @@ class _$GoToLoginStateImpl implements GoToLoginState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialState value)? initial,
-    TResult Function(CaptchaState value)? captcha,
-    TResult Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult Function(ResendVerificationCodeState value)? resendVerificationCode,
-    TResult Function(SubmitVerificationCodeState value)? submitVerificationCode,
-    TResult Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult Function(SubmitLoadingState value)? submitLoading,
-    TResult Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult Function(RegisterCompleteState value)? registerComplete,
+    TResult Function(RegisterFailedState value)? registerFail,
+    TResult Function(RegisterLoadingState value)? registerLoading,
+    TResult Function(LoginLoadingState value)? submitLoading,
+    TResult Function(LoginCompleteState value)? submitPhone,
+    TResult Function(LoginErrorState value)? loginError,
     TResult Function(GoToLoginState value)? goToLogin,
     TResult Function(goToHomeState value)? goToHome,
     required TResult orElse(),
@@ -2694,16 +1488,12 @@ class _$goToHomeStateImpl implements goToHomeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? requestId, String? errorMessage) initial,
-    required TResult Function(String? requestId, String? errorMessage) captcha,
-    required TResult Function() resendCodeLoading,
-    required TResult Function(String? requestId) resendVerificationCode,
-    required TResult Function(String? requestId) submitVerificationCode,
-    required TResult Function(String authToken) submitVerificationCodeComplete,
-    required TResult Function(String? errorMessage) submitVerificationCodeFail,
-    required TResult Function() submitPhoneLoading,
+    required TResult Function(String authToken) registerComplete,
+    required TResult Function(String? errorMessage) registerFail,
+    required TResult Function() registerLoading,
     required TResult Function() submitLoading,
-    required TResult Function(String? errorMessage) submitPhoneCompleteError,
-    required TResult Function(String? errorMessage) resendVerificationCodeError,
+    required TResult Function(String? authToken) submitPhone,
+    required TResult Function(String? errorMessage) loginError,
     required TResult Function() goToLogin,
     required TResult Function() goToHome,
   }) {
@@ -2714,16 +1504,12 @@ class _$goToHomeStateImpl implements goToHomeState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? requestId, String? errorMessage)? initial,
-    TResult? Function(String? requestId, String? errorMessage)? captcha,
-    TResult? Function()? resendCodeLoading,
-    TResult? Function(String? requestId)? resendVerificationCode,
-    TResult? Function(String? requestId)? submitVerificationCode,
-    TResult? Function(String authToken)? submitVerificationCodeComplete,
-    TResult? Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult? Function()? submitPhoneLoading,
+    TResult? Function(String authToken)? registerComplete,
+    TResult? Function(String? errorMessage)? registerFail,
+    TResult? Function()? registerLoading,
     TResult? Function()? submitLoading,
-    TResult? Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult? Function(String? errorMessage)? resendVerificationCodeError,
+    TResult? Function(String? authToken)? submitPhone,
+    TResult? Function(String? errorMessage)? loginError,
     TResult? Function()? goToLogin,
     TResult? Function()? goToHome,
   }) {
@@ -2734,16 +1520,12 @@ class _$goToHomeStateImpl implements goToHomeState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? requestId, String? errorMessage)? initial,
-    TResult Function(String? requestId, String? errorMessage)? captcha,
-    TResult Function()? resendCodeLoading,
-    TResult Function(String? requestId)? resendVerificationCode,
-    TResult Function(String? requestId)? submitVerificationCode,
-    TResult Function(String authToken)? submitVerificationCodeComplete,
-    TResult Function(String? errorMessage)? submitVerificationCodeFail,
-    TResult Function()? submitPhoneLoading,
+    TResult Function(String authToken)? registerComplete,
+    TResult Function(String? errorMessage)? registerFail,
+    TResult Function()? registerLoading,
     TResult Function()? submitLoading,
-    TResult Function(String? errorMessage)? submitPhoneCompleteError,
-    TResult Function(String? errorMessage)? resendVerificationCodeError,
+    TResult Function(String? authToken)? submitPhone,
+    TResult Function(String? errorMessage)? loginError,
     TResult Function()? goToLogin,
     TResult Function()? goToHome,
     required TResult orElse(),
@@ -2758,22 +1540,12 @@ class _$goToHomeStateImpl implements goToHomeState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitialState value) initial,
-    required TResult Function(CaptchaState value) captcha,
-    required TResult Function(ResendCodeLoadingState value) resendCodeLoading,
-    required TResult Function(ResendVerificationCodeState value)
-        resendVerificationCode,
-    required TResult Function(SubmitVerificationCodeState value)
-        submitVerificationCode,
-    required TResult Function(SubmitVerificationCodeCompleteState value)
-        submitVerificationCodeComplete,
-    required TResult Function(SubmitVerificationCodeFailState value)
-        submitVerificationCodeFail,
-    required TResult Function(SubmitPhoneLoadingState value) submitPhoneLoading,
-    required TResult Function(SubmitLoadingState value) submitLoading,
-    required TResult Function(SubmitPhoneCompleteError value)
-        submitPhoneCompleteError,
-    required TResult Function(ResendVerificationCodeError value)
-        resendVerificationCodeError,
+    required TResult Function(RegisterCompleteState value) registerComplete,
+    required TResult Function(RegisterFailedState value) registerFail,
+    required TResult Function(RegisterLoadingState value) registerLoading,
+    required TResult Function(LoginLoadingState value) submitLoading,
+    required TResult Function(LoginCompleteState value) submitPhone,
+    required TResult Function(LoginErrorState value) loginError,
     required TResult Function(GoToLoginState value) goToLogin,
     required TResult Function(goToHomeState value) goToHome,
   }) {
@@ -2784,21 +1556,12 @@ class _$goToHomeStateImpl implements goToHomeState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitialState value)? initial,
-    TResult? Function(CaptchaState value)? captcha,
-    TResult? Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult? Function(ResendVerificationCodeState value)?
-        resendVerificationCode,
-    TResult? Function(SubmitVerificationCodeState value)?
-        submitVerificationCode,
-    TResult? Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult? Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult? Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult? Function(SubmitLoadingState value)? submitLoading,
-    TResult? Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult? Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult? Function(RegisterCompleteState value)? registerComplete,
+    TResult? Function(RegisterFailedState value)? registerFail,
+    TResult? Function(RegisterLoadingState value)? registerLoading,
+    TResult? Function(LoginLoadingState value)? submitLoading,
+    TResult? Function(LoginCompleteState value)? submitPhone,
+    TResult? Function(LoginErrorState value)? loginError,
     TResult? Function(GoToLoginState value)? goToLogin,
     TResult? Function(goToHomeState value)? goToHome,
   }) {
@@ -2809,19 +1572,12 @@ class _$goToHomeStateImpl implements goToHomeState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialState value)? initial,
-    TResult Function(CaptchaState value)? captcha,
-    TResult Function(ResendCodeLoadingState value)? resendCodeLoading,
-    TResult Function(ResendVerificationCodeState value)? resendVerificationCode,
-    TResult Function(SubmitVerificationCodeState value)? submitVerificationCode,
-    TResult Function(SubmitVerificationCodeCompleteState value)?
-        submitVerificationCodeComplete,
-    TResult Function(SubmitVerificationCodeFailState value)?
-        submitVerificationCodeFail,
-    TResult Function(SubmitPhoneLoadingState value)? submitPhoneLoading,
-    TResult Function(SubmitLoadingState value)? submitLoading,
-    TResult Function(SubmitPhoneCompleteError value)? submitPhoneCompleteError,
-    TResult Function(ResendVerificationCodeError value)?
-        resendVerificationCodeError,
+    TResult Function(RegisterCompleteState value)? registerComplete,
+    TResult Function(RegisterFailedState value)? registerFail,
+    TResult Function(RegisterLoadingState value)? registerLoading,
+    TResult Function(LoginLoadingState value)? submitLoading,
+    TResult Function(LoginCompleteState value)? submitPhone,
+    TResult Function(LoginErrorState value)? loginError,
     TResult Function(GoToLoginState value)? goToLogin,
     TResult Function(goToHomeState value)? goToHome,
     required TResult orElse(),

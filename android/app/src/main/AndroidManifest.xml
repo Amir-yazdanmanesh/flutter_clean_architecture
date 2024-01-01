@@ -1,6 +1,8 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <application
         android:label="flutter_clean_architecture"
+        tools:overrideLibrary="com.mastertipsy.flutter_localization"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
