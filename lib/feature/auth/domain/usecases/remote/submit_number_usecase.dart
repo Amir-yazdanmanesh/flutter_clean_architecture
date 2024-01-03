@@ -12,6 +12,6 @@ class SubmitNumberUseCase {
   SubmitNumberUseCase(this._loginRepository);
 
   Future<DataResult<LoginResponse>> submitNumber(LoginRequest loginRequest) {
-    return _loginRepository.submitPhone(loginRequest);
+    return _loginRepository.login(loginRequest);
   }
 }
