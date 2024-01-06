@@ -13,7 +13,7 @@ class _LoginService implements LoginService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'xxxx';
+    baseUrl ??= 'http://restapi.adequateshop.com/api/authaccount/';
   }
 
   final Dio _dio;
@@ -21,7 +21,7 @@ class _LoginService implements LoginService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<LoginResponse>> submitPhone(loginRequest) async {
+  Future<HttpResponse<LoginResponse>> login(loginRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -35,7 +35,7 @@ class _LoginService implements LoginService {
     )
             .compose(
               _dio.options,
-              'users/auth/xxx',
+              'login',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -46,26 +46,33 @@ class _LoginService implements LoginService {
   }
 
   @override
-  Future<HttpResponse<SubmitCodeResponse>> submitCode(submitCodeRequest) async {
+  Future<HttpResponse<RegisterResponse>> register(submitCodeRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{
+      r'Access-Control-Allow-Origin': '*',
+      r'Access-Control-Allow-Credentials': true,
+      r'Access-Control-Allow-Headers':
+          'Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale',
+      r'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    };
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(submitCodeRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<SubmitCodeResponse>>(Options(
+        _setStreamType<HttpResponse<RegisterResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'users/auth/xxx',
+              'registration',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = SubmitCodeResponse.fromJson(_result.data!);
+    final value = RegisterResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
