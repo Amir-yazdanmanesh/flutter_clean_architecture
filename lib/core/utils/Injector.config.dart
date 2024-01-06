@@ -15,9 +15,8 @@ import '../../feature/auth/domain/blocs/login/auth_cubit.dart' as _i3;
 import '../../feature/auth/domain/repository/login_repository.dart' as _i5;
 import '../../feature/auth/domain/usecases/remote/check_user_is_login_usecase.dart'
     as _i4;
+import '../../feature/auth/domain/usecases/remote/register_usecase.dart' as _i7;
 import '../../feature/auth/domain/usecases/remote/set_auth_token_usecase.dart'
-    as _i7;
-import '../../feature/auth/domain/usecases/remote/submit_code_usecase.dart'
     as _i8;
 import '../../feature/auth/domain/usecases/remote/submit_number_usecase.dart'
     as _i9;
@@ -38,10 +37,10 @@ _i1.GetIt init(
   gh.factory<_i4.CheckUserIsLoginUseCase>(
       () => _i4.CheckUserIsLoginUseCase(gh<_i5.LoginRepository>()));
   gh.factory<_i6.MyApp>(() => _i6.MyApp());
-  gh.factory<_i7.SetAuthTokenCase>(
-      () => _i7.SetAuthTokenCase(gh<_i5.LoginRepository>()));
-  gh.factory<_i8.SubmitCodeUseCase>(
-      () => _i8.SubmitCodeUseCase(gh<_i5.LoginRepository>()));
+  gh.factory<_i7.RegisterUseCase>(
+      () => _i7.RegisterUseCase(gh<_i5.LoginRepository>()));
+  gh.factory<_i8.SetAuthTokenCase>(
+      () => _i8.SetAuthTokenCase(gh<_i5.LoginRepository>()));
   gh.factory<_i9.SubmitNumberUseCase>(
       () => _i9.SubmitNumberUseCase(gh<_i5.LoginRepository>()));
   return getIt;
