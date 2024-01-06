@@ -1,123 +1,175 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clean_architecture/core/widgets/loading_widget.dart';
+import 'package:flutter_clean_architecture/feature/auth/presentation/pages/home_page.dart';
+import 'package:flutter_clean_architecture/feature/auth/presentation/pages/sign_up_page.dart';
 
-import '../../../../core/utils/spaces.dart';
 import '../../../../core/utils/toasts.dart';
-import '../../../../core/widgets/label_widget.dart';
 import '../../domain/blocs/login/auth_cubit.dart';
-import 'otp_page.dart';
 
 class SignInPage extends StatefulWidget {
   static const id = "LoginPage";
 
   const SignInPage({Key? key}) : super(key: key);
-  static Page page() => const MaterialPage<void>(child: SignInPage());
 
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
 
 class _SignInPageState extends State<SignInPage> {
-  final int phoneNumberLength = 11;
-  String? phone;
+  String? email;
+  String? password;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state is SubmitVerificationCodeState) {
-          Navigator.of(context).pushNamed(OtpPage.id,
+        if (state is LoginCompleteState) {
+          Navigator.of(context).pushNamed(HomePage.id,
               arguments: LoginArguments(
-                state.requestId!,
-                phone!,
+                state.authToken!,
+                email!,
               ));
         }
-        if (state is SubmitPhoneCompleteError) {
+        if (state is LoginErrorState) {
           showToast(state.errorMessage!, context, error: true);
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Login clean arch'),
-            automaticallyImplyLeading: false,
-          ),
-          body: Center(
-            child: Container(
-              width: double.infinity,
-              height: double.infinity,
-              margin: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  const InputLabel(title: "Login"),
-                  padding(),
-                  inputPhoneNumber(),
-                  padding(),
-                  button(state, theme),
-                ],
-              ),
+        if (state is LoginLoadingState) {
+          return const LoadingWidget();
+        } else {
+          return Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/images/login.png'),
+                  fit: BoxFit.cover),
             ),
-          ),
-        );
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: Stack(children: [
+                Container(
+                  padding: const EdgeInsets.only(left: 35, top: 80),
+                  child: const Text(
+                    "Welcome\nBack",
+                    style: TextStyle(color: Colors.white, fontSize: 33),
+                  ),
+                ),
+                SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.only(
+                        right: 35,
+                        left: 35,
+                        top: MediaQuery.of(context).size.height * 0.5),
+                    child: Column(children: [
+                      TextField(
+                          decoration: InputDecoration(
+                            fillColor: Colors.grey.shade100,
+                            filled: true,
+                            hintText: 'Email',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              email = value;
+                            });
+                          }),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            fillColor: Colors.grey.shade100,
+                            filled: true,
+                            hintText: 'Password',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              password = value;
+                            });
+                          }),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Sign In',
+                            style: TextStyle(
+                              color: Color(0xff4c505b),
+                              fontSize: 27,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          CircleAvatar(
+                            radius: 30,
+                            backgroundColor: const Color(0xff4c505b),
+                            child: IconButton(
+                              color: Colors.white,
+                              onPressed: () {
+                                if ((email ?? "").length > 3 &&
+                                    (password ?? "").isNotEmpty) {
+                                  context
+                                      .read<AuthCubit>()
+                                      .login(email!, password!);
+                                } else {
+                                  showToast("Invalidate inputs", context,
+                                      error: true);
+                                }
+                              },
+                              icon: const Icon(Icons.arrow_forward),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .popAndPushNamed(SignUpPage.id);
+                              },
+                              child: const Text(
+                                'Sign Up',
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  fontSize: 18,
+                                  color: Color(0xff4c505b),
+                                ),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                'Forgot Password',
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  fontSize: 18,
+                                  color: Color(0xff4c505b),
+                                ),
+                              ),
+                            ),
+                          ]),
+                    ]),
+                  ),
+                ),
+              ]),
+            ),
+          );
+        }
       },
     );
-  }
-
-  padding() {
-    return const SizedBox(height: Spacings.marginLg);
-  }
-
-  inputPhoneNumber() {
-    return TextFormField(
-      maxLength: phoneNumberLength,
-      textInputAction: TextInputAction.done,
-      keyboardType: TextInputType.number,
-      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-        decoration: InputDecoration(
-            border: UnderlineInputBorder(
-                borderRadius:BorderRadius.circular(5.0)),
-            hintText: 'Please enter a number'
-        ),
-      onChanged: (value) {
-        setState(() {
-          phone = value;
-        });
-      },
-    );
-  }
-
-
-    button(AuthState state, ThemeData theme) {
-    return Padding(
-        padding: const EdgeInsets.all(Spacings.marginLg),
-        child: FilledButton(
-            onPressed: (validation())
-                ? () {
-                    context
-                        .read<AuthCubit>()
-                        .submitPhone(phone!);
-                  }
-                : null,
-            style: FilledButton.styleFrom(
-              disabledBackgroundColor:
-                  theme.colorScheme.secondary.withOpacity(0.5),
-              backgroundColor: theme.primaryColor,
-              padding:  const EdgeInsets.all(Spacings.marginLg),
-              shape: const RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.all(Radius.circular(Spacings.radiusXl))),
-              minimumSize: const Size.fromHeight(Spacings.sizeXs),
-            ),
-            child: state is SubmitPhoneLoadingState
-                ? CircularProgressIndicator(color: theme.colorScheme.onPrimary)
-                : const Text('Login')));
-  }
-
-  bool validation() {
-    return (phone?.length ?? 0) == phoneNumberLength;
   }
 }
 
